@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlobalBizz Solutions — Redesign Concept v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#156082;
+    --blue-deep:#0B3041;
+    --ink:#121212;
+    --ink-soft:#4C5559;
+    --paper:#FFFFFF;
+    --paper-tint:#F1F6F8;
+    --paper-deep:#E7EEF1;
+    --line: rgba(17,17,17,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);}
+  .wordmark{font-family:'Anton',sans-serif;font-weight:400;letter-spacing:0.01em;text-transform:none;}
+  .marker{font-family:'Permanent Marker',cursive;font-weight:400;}
+
+  a:focus-visible, button:focus-visible{outline:3px solid var(--blue);outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important; transition:none !important;}}
+
+  /* signature device — diagonal "cut", pulled from the Z-arrow slicing the logo's ring */
+  .cut-divider{
+    height:26px;
+    background: linear-gradient(100deg, var(--ink) 0%, var(--blue) 55%, var(--blue-deep) 100%);
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  }
+  .cut-divider.flip{clip-path: polygon(0 0, 100% 100%, 0 100%);}
+
+  /* HEADER */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+  .brand img{width:40px;height:40px;}
+  .brand-text{font-family:'Anton',sans-serif;font-size:19px;line-height:1;}
+  .brand-text .bizz{color:var(--blue);}
+  nav.links{display:flex;gap:34px;list-style:none;margin:0;padding:0;}
+  nav.links a{text-decoration:none;font-weight:600;font-size:14.5px;color:var(--ink);position:relative;padding-bottom:4px;}
+  nav.links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--blue);transition:width .25s ease;}
+  nav.links a:hover::after{width:100%;}
+  .nav-cta{background:var(--ink);color:#fff;text-decoration:none;padding:10px 20px;border-radius:2px;font-size:14px;font-weight:700;}
+  .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:4px;padding:8px 10px;}
+  .nav-links-wrap{display:flex;align-items:center;gap:32px;}
+  @media (max-width:860px){
+    .nav-links-wrap{position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;align-items:flex-start;padding:20px 32px 28px;border-bottom:1px solid var(--line);display:none;}
+    .nav-links-wrap.open{display:flex;}
+    nav.links{flex-direction:column;gap:18px;width:100%;}
+    .menu-btn{display:block;}
+  }
+
+  /* HERO */
+  .hero{padding:88px 0 64px;position:relative;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
+  .hero h1{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(36px,5vw,58px);line-height:1.05;margin:0;}
+  .hero h1 .line2{color:var(--blue);}
+  .hero .tagline{
+    font-family:'Permanent Marker',cursive;font-size:clamp(20px,2.3vw,28px);
+    color:var(--ink); margin-top:18px; line-height:1.35;
+  }
+  .hero .tagline .hl{color:var(--blue);}
+  .hero p.lede{font-size:17px;color:var(--ink-soft);max-width:48ch;margin-top:20px;line-height:1.65;}
+  .hero-ctas{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap;}
+  .btn{text-decoration:none;padding:13px 26px;border-radius:2px;font-weight:700;font-size:14.5px;display:inline-flex;align-items:center;gap:8px;transition:transform .18s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--blue);color:#fff;}
+  .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+
+  .hero-visual{position:relative;}
+  .hero-visual img{border-radius:4px;}
+  .badge-pill{
+    position:absolute; bottom:-18px; left:-18px;
+    background:var(--ink); color:#fff;
+    padding:10px 18px; border-radius:30px;
+    font-size:12.5px; font-weight:600; letter-spacing:0.02em;
+    display:flex; align-items:center; gap:8px;
+    box-shadow:0 12px 24px -10px rgba(0,0,0,0.5);
+  }
+  .badge-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);flex-shrink:0;}
+  @media (max-width:820px){
+    .hero-grid{grid-template-columns:1fr;}
+    .badge-pill{position:static;margin-top:18px;display:inline-flex;}
+  }
+
+  /* ABOUT */
+  .about{padding:76px 0;background:var(--paper-tint);}
+  .about-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:56px;align-items:center;}
+  .about h2{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(26px,3vw,36px);margin:10px 0 0;}
+  .about p{color:var(--ink-soft);line-height:1.75;font-size:16px;margin-top:18px;}
+  .about p:first-of-type{font-size:17.5px;color:var(--ink);}
+  .about-marks{display:flex;gap:28px;margin-top:26px;flex-wrap:wrap;}
+  .about-mark{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px;}
+  .about-mark .sq{width:10px;height:10px;background:var(--blue);flex-shrink:0;}
+  @media (max-width:820px){.about-grid{grid-template-columns:1fr;}}
+
+  /* SPREAD */
+  .spread{padding:88px 0;}
+  .spread-head{text-align:center;margin-bottom:52px;}
+  .spread-head h2{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);margin-top:8px;}
+  .pages{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;box-shadow:0 18px 40px -24px rgba(17,17,17,0.35);}
+  .page{padding:50px 42px;background:#fff;}
+  .page.dark{background:var(--ink);color:#fff;}
+  .page .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:20px;}
+  .page.light .tag{background:rgba(21,96,130,0.1);color:var(--blue);}
+  .page.dark .tag{background:rgba(255,255,255,0.12);color:#fff;}
+  .page h3{font-family:'Anton',sans-serif;font-weight:400;font-size:27px;margin-bottom:8px;}
+  .page .quote{font-family:'Permanent Marker',cursive;font-size:16.5px;margin:16px 0 20px;line-height:1.4;}
+  .page.light .quote{color:var(--blue);}
+  .page.dark .quote{color:#fff;}
+  .page p.desc{line-height:1.65;margin-bottom:26px;}
+  .page.light p.desc{color:var(--ink-soft);}
+  .page.dark p.desc{color:#D7DEE2;}
+  .page a.explore{text-decoration:none;font-weight:700;font-size:14.5px;display:inline-flex;align-items:center;gap:8px;}
+  .page.light a.explore{color:var(--blue);}
+  .page.dark a.explore{color:#fff;}
+  .page a.explore .arrow{transition:transform .2s ease;}
+  .page a.explore:hover .arrow{transform:translateX(4px);}
+  @media (max-width:820px){.pages{grid-template-columns:1fr;}}
+
+  /* VALUES */
+  .values{padding:80px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .values-head{max-width:60ch;}
+  .values-head h2{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(26px,3.2vw,36px);margin-top:8px;}
+  .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:48px;}
+  .value{border-top:3px solid var(--blue);padding-top:18px;}
+  .value h3{font-family:'Anton',sans-serif;font-weight:400;font-size:19px;margin-bottom:10px;letter-spacing:0.01em;}
+  .value p{color:var(--ink-soft);font-size:15px;line-height:1.6;margin:0;}
+  @media (max-width:760px){.values-grid{grid-template-columns:1fr;gap:32px;}}
+
+  /* CONTACT */
+  .contact{padding:88px 0;}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--ink);color:#fff;border-radius:8px;overflow:hidden;}
+  .contact-left{padding:56px;}
+  .contact-left h2{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(26px,3vw,34px);color:#fff;margin:10px 0 0;}
+  .contact-left p{color:#C9D3D7;line-height:1.65;margin-top:14px;max-width:44ch;}
+  .contact-email{margin-top:22px;font-size:16px;font-weight:700;text-decoration:none;color:#fff;border-bottom:2px solid var(--blue);padding-bottom:2px;display:inline-block;}
+  .contact-right{background:var(--blue);padding:56px;display:flex;flex-direction:column;justify-content:center;}
+  .contact-right .eyebrow{color:#D6EAF2;}
+  .contact-right h3{font-family:'Anton',sans-serif;font-weight:400;color:#fff;margin-top:8px;font-size:23px;}
+  .contact-right p{color:#DCEDF3;font-size:14.5px;margin-top:10px;line-height:1.55;}
+  .btn-white{margin-top:20px;background:#fff;color:var(--blue-deep);}
+  @media (max-width:820px){.contact-grid{grid-template-columns:1fr;}.contact-left,.contact-right{padding:40px 32px;}}
+
+  /* FOOTER */
+  footer{padding:44px 0;}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;padding-top:24px;border-top:1px solid var(--line);}
+  .footer-brand{display:flex;align-items:center;gap:10px;}
+  .footer-brand img{width:26px;height:26px;}
+  .footer-brand span{font-family:'Anton',sans-serif;font-size:15px;}
+  .socials{display:flex;gap:12px;}
+  .socials a{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--ink);font-size:12px;font-weight:700;}
+  .socials a:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+  .footer-meta{font-size:12.5px;color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap" style="position:relative;">
+    <a href="#" class="brand">
+      <img src="GB_Logo_2026.svg" alt="GlobalBizz Solutions logo">
+      <span class="brand-text">Global<span class="bizz">Bizz</span> Solutions</span>
+    </a>
+    <button class="menu-btn" aria-label="Toggle menu" onclick="document.querySelector('.nav-links-wrap').classList.toggle('open')">☰</button>
+    <div class="nav-links-wrap">
+      <nav class="links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#soulscribe">SoulScribe</a>
+        <a href="#earthengrace">EarthenGrace</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="nav-cta">Request brochure</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>CONNECTING<br>CRAFTSMANSHIP<br><span class="line2">WITH COMMERCE.</span></h1>
+      <p class="tagline">Globally, with a <span class="hl">handmade</span> touch.</p>
+      <p class="lede">Two artisan product lines — SoulScribe and EarthenGrace — built on quality, sustainability and collaboration, and open to the partnerships that help them travel further.</p>
+      <div class="hero-ctas">
+        <a href="#soulscribe" class="btn btn-primary">Explore the collections</a>
+        <a href="#contact" class="btn btn-outline">Request brochure</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=700&q=80" alt="Hand-crafted leather journal, part of the SoulScribe line">
+      <div class="badge-pill"><span class="dot"></span>Netherlands-registered · KvK 94673543</div>
+    </div>
+  </div>
+</section>
+
+<div class="cut-divider"></div>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <p class="eyebrow">Who we are</p>
+      <h2>Craftsmanship meets<br>global commerce.</h2>
+    </div>
+    <div>
+      <p>At GlobalBizz Solutions, we bring artisanal craftsmanship and creative innovations to life through our two product lines — SoulScribe and EarthenGrace.</p>
+      <p>Rooted in our core values of quality, sustainability and collaboration, we're building a platform that celebrates diversity and endless possibilities.</p>
+      <p>We're always open to partnerships and new opportunities. Together, let's craft meaningful connections and deliver exceptional offerings to the world.</p>
+      <div class="about-marks">
+        <div class="about-mark"><span class="sq"></span>Quality</div>
+        <div class="about-mark"><span class="sq"></span>Sustainability</div>
+        <div class="about-mark"><span class="sq"></span>Collaboration</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="spread">
+  <div class="wrap">
+    <div class="spread-head">
+      <p class="eyebrow" style="text-align:center;">Our lines</p>
+      <h2>Two collections, one philosophy</h2>
+    </div>
+    <div class="pages">
+      <div class="page light" id="soulscribe">
+        <span class="tag">Leather · Journals</span>
+        <h3>SoulScribe</h3>
+        <p class="quote">"Beautifully hand-crafted leather journals for every thought."</p>
+        <p class="desc">Full-grain leather journals and diaries, made to be carried, written in and kept for years. Our leather line for every thought worth putting down.</p>
+        <a href="#" class="explore">View the collection <span class="arrow">→</span></a>
+      </div>
+      <div class="page dark" id="earthengrace">
+        <span class="tag">Earthenware · Artefacts</span>
+        <h3>EarthenGrace</h3>
+        <p class="quote">"Timeless artefacts crafted with heart and skill."</p>
+        <p class="desc">Our earthen line of artefacts — shaped, fired and finished by hand, built for everyday use and made to last well beyond it.</p>
+        <a href="#" class="explore">View the collection <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cut-divider flip"></div>
+
+<section class="values">
+  <div class="wrap">
+    <div class="values-head">
+      <p class="eyebrow">What we stand for</p>
+      <h2>Diversity, and endless possibilities</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value">
+        <h3>Quality</h3>
+        <p>Materials and technique come first, every piece checked by hand before it ships.</p>
+      </div>
+      <div class="value">
+        <h3>Sustainability</h3>
+        <p>Small-batch production and responsibly sourced materials, made to be kept, not replaced.</p>
+      </div>
+      <div class="value">
+        <h3>Collaboration</h3>
+        <p>Always open to partnerships and new opportunities — we build with people, not around them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <p class="eyebrow" style="color:#8FC2D8;">Get in touch</p>
+        <h2>Let's craft meaningful connections.</h2>
+        <p>We're always open to new partnerships and opportunities — reach out and let's talk about what we can build together.</p>
+        <a href="mailto:sales@globalbizz.nl" class="contact-email">sales@globalbizz.nl</a>
+      </div>
+      <div class="contact-right">
+        <p class="eyebrow">Brochure request</p>
+        <h3>Get our full catalogue</h3>
+        <p>Tell us a little about what you're looking for and we'll send the SoulScribe & EarthenGrace brochure straight to your inbox.</p>
+        <a href="mailto:sales@globalbizz.nl" class="btn btn-white">Request for brochure</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <div class="footer-brand"><img src="GB_Logo_2026.svg" alt=""><span>GlobalBizz Solutions</span></div>
+      <div class="socials">
+        <a href="https://www.instagram.com/global_bizz" aria-label="Instagram">IG</a>
+        <a href="https://www.linkedin.com/company/globalbizznl" aria-label="LinkedIn">in</a>
+      </div>
+      <div class="footer-meta">GlobalBizz Solutions · Netherlands · KvK 94673543</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
