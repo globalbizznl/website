@@ -161,7 +161,7 @@
 
   /* VALUES */
   .values{padding:80px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .values-head{max-width:60ch;}
+  .values-head{max-width:60ch;margin:0 auto;text-align:center;}
   .values-head h2{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(26px,3.2vw,36px);margin-top:8px;}
   .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:48px;}
   .value{border-top:3px solid var(--blue);padding-top:18px;}
@@ -202,8 +202,10 @@
   .footer-brand img{width:26px;height:26px;}
   .footer-brand span{font-family:'Anton',sans-serif;font-size:15px;}
   .socials{display:flex;gap:12px;}
-  .socials a{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--ink);font-size:12px;font-weight:700;}
-  .socials a:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+  .socials a{width:36px;height:36px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;text-decoration:none;color:#fff;transition:transform .15s ease;}
+  .socials a:hover{transform:translateY(-2px);}
+  .socials a.instagram{background:radial-gradient(circle at 30% 107%, #fdf497, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);}
+  .socials a.linkedin{background:#0A66C2;}
   .footer-meta{font-size:12.5px;color:var(--ink-soft);}
 </style>
 </head>
@@ -368,10 +370,10 @@
     <div class="footer-row">
       <div class="footer-brand"><img src="GB_Logo_2026.svg" alt=""><span>GlobalBi<span class="bizz">zz</span> Solutions</span></div>
       <div class="socials">
-        <a href="https://www.instagram.com/global_bizz" aria-label="Instagram">
+        <a href="https://www.instagram.com/global_bizz" aria-label="Instagram" class="instagram">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
         </a>
-        <a href="https://www.linkedin.com/company/globalbizznl" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/company/globalbizznl" aria-label="LinkedIn" class="linkedin">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4.98 3.5C4.98 4.9 3.87 6 2.5 6S0 4.9 0 3.5 1.12 1 2.5 1s2.48 1.1 2.48 2.5zM.2 8.4h4.6V23H.2V8.4zM8.4 8.4H13v2h.06c.64-1.15 2.2-2.36 4.53-2.36 4.84 0 5.73 3.05 5.73 7.02V23h-4.6v-6.6c0-1.57-.03-3.6-2.28-3.6-2.29 0-2.64 1.7-2.64 3.47V23h-4.6V8.4z"/></svg>
         </a>
       </div>
