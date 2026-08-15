@@ -62,7 +62,7 @@
 
   /* HERO */
   .hero{padding:88px 0 64px;position:relative;overflow:hidden;}
-  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:stretch;}
   .hero h1{font-family:'Schoolbell',cursive;font-weight:700;font-size:clamp(36px,5vw,58px);line-height:1.05;margin:0;}
   .hero h1 .line2{color:var(--blue);}
   .hero .tagline{
@@ -78,11 +78,11 @@
   .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
 
   /* HERO GALLERY — cyclic, dynamic slide count */
-.hero-visual{position:relative;}
-.hero-track-wrap{overflow:hidden;border-radius:4px;}
-.hero-track{display:flex;transition:transform .45s ease;}
-.hero-slide{flex:0 0 100%;}
-.hero-slide img{width:100%; height:360px; object-fit:cover; border-radius:4px; display:block;}
+.hero-visual{position:relative;display:flex;flex-direction:column;}
+.hero-track-wrap{overflow:hidden;border-radius:4px;flex:1;}
+.hero-track{display:flex;height:100%;transition:transform .45s ease;}
+.hero-slide{flex:0 0 100%;height:100%;}
+.hero-slide img{width:100%;height:100%;object-fit:cover;border-radius:4px;display:block;}
 .hero-dots{display:flex;gap:8px;justify-content:center;margin-top:14px;}
 .hero-dots button{width:8px;height:8px;border-radius:50%;border:none;background:var(--line);padding:0;cursor:pointer;}
 .hero-dots button.active{background:var(--blue);width:20px;border-radius:5px;transition:width .2s ease;}
@@ -105,7 +105,7 @@
 @media (max-width:820px){
   .hero-grid{grid-template-columns:1fr;}
   .badge-pill{position:static;margin-top:18px;display:inline-flex;}
-  .hero-slide img{height:280px;}
+  .hero-track-wrap{height:320px;}
 }
   
   /* ABOUT */
@@ -121,21 +121,23 @@
 
   /* SPREAD */
   .spread{padding:88px 0;}
+  [id]{scroll-margin-top:90px;}
   .spread-head{text-align:center;margin-bottom:52px;}
   .spread-head h2{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);margin-top:8px;}
   .pages{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;box-shadow:0 18px 40px -24px rgba(17,17,17,0.35);}
   .page{padding:50px 42px;background:#fff;}
-  .page.dark{background:var(--ink);color:#fff;}
+  .page.dark{background:var(--blue);color:#fff;}
   .page .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:20px;}
   .page.light .tag{background:rgba(21,96,130,0.1);color:var(--blue);}
   .page.dark .tag{background:rgba(255,255,255,0.12);color:#fff;}
   .page h3{font-family:'Anton',sans-serif;font-weight:400;font-size:27px;margin-bottom:8px;}
+  .page h1{font-family:'Schoolbell',cursive;font-weight:400;font-size:19px;margin:16px 0 20px;line-height:1.5;}
   .page .quote{font-family:'Schoolbell',cursive;font-size:19px;margin:16px 0 20px;line-height:1.5;}
   .page.light .quote{color:var(--blue);}
   .page.dark .quote{color:#fff;}
   .page p.desc{line-height:1.65;margin-bottom:26px;}
   .page.light p.desc{color:var(--ink-soft);}
-  .page.dark p.desc{color:#D7DEE2;}
+  .page.dark p.desc{color:#E3F1F6;}}
   .page a.explore{text-decoration:none;font-weight:700;font-size:14.5px;display:inline-flex;align-items:center;gap:8px;}
   .page.light a.explore{color:var(--blue);}
   .page.dark a.explore{color:#fff;}
@@ -210,7 +212,7 @@
         <a href="#contact">Contact</a>
       </nav>
       <!-- REPLACE href below with your Google Form's public URL -->
-      <a href="https://forms.gle/YOUR-FORM-ID-HERE" target="_blank" rel="noopener" class="nav-cta">Request brochure</a>
+      <a href="https://forms.gle/rTHKQgbVV8rNWs6x6" target="_blank" rel="noopener" class="nav-cta">Request brochure</a>
     </div>
   </div>
 </header>
@@ -222,8 +224,8 @@
       <p class="tagline">with a <span class="hl">handmade</span> touch.</p>
       <p class="lede">Two artisan product lines — SoulScribe and EarthenGrace — built on quality, sustainability and collaboration, and open to the partnerships that help them travel further.</p>
       <div class="hero-ctas">
-        <a href="#soulscribe" class="btn btn-primary">Explore the collections</a>
-        <a href="https://forms.gle/YOUR-FORM-ID-HERE" target="_blank" rel="noopener" class="btn btn-outline">Request brochure</a>
+        <a href="#collections" class="btn btn-primary">Explore the collections</a>
+        <a href="https://forms.gle/rTHKQgbVV8rNWs6x6" target="_blank" rel="noopener" class="btn btn-outline">Request brochure</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -268,7 +270,7 @@
   </div>
 </section>
 
-<section class="spread">
+<section class="spread" id="collections">
   <div class="wrap">
     <div class="spread-head">
       <p class="eyebrow" style="text-align:center;">Our lines</p>
@@ -280,14 +282,14 @@
         <h1>SoulScribe</h1>
         <p class="quote">"Beautifully hand-crafted leather journals for every thought."</p>
         <p class="desc">Full-grain leather journals and diaries, made to be carried, written in and kept for years. Our leather line for every thought worth putting down.</p>
-        <a href="#" class="explore">View the collection <span class="arrow">→</span></a>
+        <a href="#gallery" class="explore">View the collection <span class="arrow">→</span></a>
       </div>
       <div class="page dark" id="earthengrace">
         <span class="tag">Earthenware · Artefacts</span>
         <h1>EarthenGrace</h1>
         <p class="quote">"Timeless artefacts crafted with heart and skill."</p>
         <p class="desc">Our earthen line of artefacts — shaped, fired and finished by hand, built for everyday use and made to last well beyond it.</p>
-        <a href="#" class="explore">View the collection <span class="arrow">→</span></a>
+        <a href="#gallery" class="explore">View the collection <span class="arrow">→</span></a>
       </div>
     </div>
   </div>
@@ -304,7 +306,7 @@
     </div>
     <div class="gallery-embed">
       <!-- REPLACE src below with your Google Photos shared album link -->
-      <iframe src="https://photos.google.com/share/YOUR-ALBUM-SHARE-LINK-HERE" title="GlobalBizz Solutions photo gallery" loading="lazy"></iframe>
+      <iframe src="https://drive.google.com/embeddedfolderview?id=1OneZeAGPnN-aafSBsHFWnyLlIV5kRLEk#grid" title="GlobalBizz Solutions photo gallery" loading="lazy"></iframe>
     </div>
   </div>
 </section>
@@ -346,9 +348,9 @@
       </div>
       <div class="contact-right">
         <p class="eyebrow">Contact request</p>
-        <h3>Get in touch</h3>
+        <h3>Let's connect</h3>
         <p>Tell us a little about what you're looking for and we'll send the SoulScribe & EarthenGrace details straight to your inbox.</p>
-        <a href="https://forms.gle/YOUR-FORM-ID-HERE" target="_blank" rel="noopener" class="btn btn-white">Request for brochure</a>
+        <a href="https://forms.gle/rTHKQgbVV8rNWs6x6" target="_blank" rel="noopener" class="btn btn-white">Get in touch</a>
       </div>
     </div>
   </div>
