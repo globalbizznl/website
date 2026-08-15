@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GlobalBizz Solutions — Redesign Concept v2</title>
+<title>GlobalBizz Solutions v3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Schoolbell&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet"><style>
   :root{
     --blue:#156082;
     --blue-deep:#0B3041;
@@ -62,7 +64,7 @@
   /* HERO */
   .hero{padding:88px 0 64px;position:relative;overflow:hidden;}
   .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
-  .hero h1{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(36px,5vw,58px);line-height:1.05;margin:0;}
+  .hero h1{font-family:'Schoolbell',cursive;font-weight:700;font-size:clamp(36px,5vw,58px);line-height:1.05;margin:0;}
   .hero h1 .line2{color:var(--blue);}
   .hero .tagline{
     font-family:'Schoolbell',cursive;font-size:clamp(22px,2.5vw,30px);
@@ -198,7 +200,7 @@
   <div class="nav wrap" style="position:relative;">
     <a href="#" class="brand">
       <img src="GB_Logo_2026.svg" alt="GlobalBizz Solutions logo">
-      <span class="brand-text">Global<span class="bizz">Bizz</span> Solutions</span>
+      <span class="brand-text">GlobalBi<span class="bizz">zz</span> Solutions</span>
     </a>
     <button class="menu-btn" aria-label="Toggle menu" onclick="document.querySelector('.nav-links-wrap').classList.toggle('open')">☰</button>
     <div class="nav-links-wrap">
@@ -219,8 +221,8 @@
 <section class="hero" id="home">
   <div class="wrap hero-grid">
     <div>
-      <h1>CONNECTING<br>CRAFTSMANSHIP<br><span class="line2">WITH COMMERCE.</span></h1>
-      <p class="tagline">Globally, with a <span class="hl">handmade</span> touch.</p>
+      <h1>CONNECTING<br><span class="line2">CRAFTSMANSHIP</span><br>WITH COMMERCE, GLOBALLY</h1>
+      <p class="tagline">with a <span class="hl">handmade</span> touch.</p>
       <p class="lede">Two artisan product lines — SoulScribe and EarthenGrace — built on quality, sustainability and collaboration, and open to the partnerships that help them travel further.</p>
       <div class="hero-ctas">
         <a href="#soulscribe" class="btn btn-primary">Explore the collections</a>
@@ -240,7 +242,7 @@
         <button type="button" aria-label="Previous photo" onclick="document.querySelector('.hero-gallery').scrollBy({left:-320,behavior:'smooth'})">‹</button>
         <button type="button" aria-label="Next photo" onclick="document.querySelector('.hero-gallery').scrollBy({left:320,behavior:'smooth'})">›</button>
       </div>
-      <div class="badge-pill"><span class="dot"></span>Netherlands-registered · KvK 94673543</div>
+      <div class="badge-pill"><span class="dot"></span>Netherlands · KvK 94673543</div>
     </div>
   </div>
 </section>
@@ -275,14 +277,14 @@
     <div class="pages">
       <div class="page light" id="soulscribe">
         <span class="tag">Leather · Journals</span>
-        <h3>SoulScribe</h3>
+        <h1>SoulScribe</h1>
         <p class="quote">"Beautifully hand-crafted leather journals for every thought."</p>
         <p class="desc">Full-grain leather journals and diaries, made to be carried, written in and kept for years. Our leather line for every thought worth putting down.</p>
         <a href="#" class="explore">View the collection <span class="arrow">→</span></a>
       </div>
       <div class="page dark" id="earthengrace">
         <span class="tag">Earthenware · Artefacts</span>
-        <h3>EarthenGrace</h3>
+        <h1>EarthenGrace</h1>
         <p class="quote">"Timeless artefacts crafted with heart and skill."</p>
         <p class="desc">Our earthen line of artefacts — shaped, fired and finished by hand, built for everyday use and made to last well beyond it.</p>
         <a href="#" class="explore">View the collection <span class="arrow">→</span></a>
@@ -298,7 +300,7 @@
     <div class="gallery-head">
       <p class="eyebrow">Fresh from the workshop</p>
       <h2>Gallery</h2>
-      <p>New pieces, work in progress, and behind-the-scenes shots — updated regularly. This is a live Google Photos album, so it stays current without touching the site.</p>
+      <p>See what's new - our new discussions, new products, work in progress, and behind-the-scenes shots — updated regularly.</p>
     </div>
     <div class="gallery-embed">
       <!-- REPLACE src below with your Google Photos shared album link -->
@@ -343,9 +345,9 @@
         </div>
       </div>
       <div class="contact-right">
-        <p class="eyebrow">Brochure request</p>
-        <h3>Get our full catalogue</h3>
-        <p>Tell us a little about what you're looking for and we'll send the SoulScribe & EarthenGrace brochure straight to your inbox.</p>
+        <p class="eyebrow">Contact request</p>
+        <h3>Get in touch</h3>
+        <p>Tell us a little about what you're looking for and we'll send the SoulScribe & EarthenGrace details straight to your inbox.</p>
         <a href="https://forms.gle/YOUR-FORM-ID-HERE" target="_blank" rel="noopener" class="btn btn-white">Request for brochure</a>
       </div>
     </div>
@@ -355,7 +357,7 @@
 <footer>
   <div class="wrap">
     <div class="footer-row">
-      <div class="footer-brand"><img src="GB_Logo_2026.svg" alt=""><span>GlobalBizz Solutions</span></div>
+      <div class="footer-brand"><img src="GB_Logo_2026.svg" alt=""><span>GlobalBi<span class="bizz">zz</span> Solutions</span>
       <div class="socials">
         <a href="https://www.instagram.com/global_bizz" aria-label="Instagram">IG</a>
         <a href="https://www.linkedin.com/company/globalbizznl" aria-label="LinkedIn">in</a>
