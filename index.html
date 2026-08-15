@@ -65,6 +65,8 @@
   .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:stretch;}
   .hero h1{font-family:'Schoolbell',cursive;font-weight:700;font-size:clamp(36px,5vw,58px);line-height:1.05;margin:0;}
   .hero h1 .line2{color:var(--blue);}
+  .hero-text{text-align:center;display:flex;flex-direction:column;align-items:center;}
+  .hero-ctas{justify-content:center;}
   .hero .tagline{
     font-family:'Schoolbell',cursive;font-size:clamp(22px,2.5vw,30px);
     color:var(--ink); margin-top:18px; line-height:1.35;
@@ -131,7 +133,7 @@
   .page.light .tag{background:rgba(21,96,130,0.1);color:var(--blue);}
   .page.dark .tag{background:rgba(255,255,255,0.12);color:#fff;}
   .page h3{font-family:'Anton',sans-serif;font-weight:400;font-size:27px;margin-bottom:8px;}
-  .page h1{font-family:'Schoolbell',cursive;font-weight:600;font-size:36px;margin:16px 0 20px;line-height:1.5;}
+  .page h1{font-family:'Schoolbell',cursive;font-weight:700;font-size:36px;margin:16px 0 20px;line-height:1.5;}
   .page .quote{font-family:'Schoolbell',cursive;font-size:19px;margin:16px 0 20px;line-height:1.5;}
   .page.light .quote{color:var(--blue);}
   .page.dark .quote{color:#fff;}
@@ -169,11 +171,10 @@
 
   /* CONTACT */
   .contact{padding:88px 0;}
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--ink);color:#fff;border-radius:8px;overflow:hidden;}
-  .contact-left{padding:56px;}
-  .contact-left h2{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(26px,3vw,34px);color:#fff;margin:10px 0 0;}
-  .contact-left p{color:#C9D3D7;line-height:1.65;margin-top:14px;max-width:44ch;}
-  .contact-email{margin-top:22px;font-size:16px;font-weight:700;text-decoration:none;color:#fff;border-bottom:2px solid var(--blue);padding-bottom:2px;display:inline-block;}
+  .contact-grid{background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:0 18px 40px -24px rgba(17,17,17,0.25);}
+  .contact-left h2{color:var(--ink);}
+  .contact-left p{color:var(--ink-soft);}
+  .contact-email{color:var(--ink);border-bottom:2px solid var(--blue);}
   .contact-right{background:var(--blue);padding:56px;display:flex;flex-direction:column;justify-content:center;}
   .contact-right .eyebrow{color:#D6EAF2;}
   .contact-right h3{font-family:'Anton',sans-serif;font-weight:400;color:#fff;margin-top:8px;font-size:23px;}
@@ -220,8 +221,8 @@
 <section class="hero" id="home">
   <div class="wrap hero-grid">
     <div>
-      <h1>CONNECTING<br><span class="line2">CRAFTSMANSHIP</span><br>WITH COMMERCE, GLOBALLY</h1>
-      <p class="tagline">with a <span class="hl">handmade</span> touch.</p>
+      <div class="hero-text"><h1>CONNECTING<br><span class="line2">CRAFTSMANSHIP</span><br>WITH COMMERCE, GLOBALLY</h1></div>
+      <div class="hero-text"><p class="tagline">with a <span class="hl">handmade</span> touch.</p></div>
       <p class="lede">Two artisan product lines — SoulScribe and EarthenGrace — built on quality, sustainability and collaboration, and open to the partnerships that help them travel further.</p>
       <div class="hero-ctas">
         <a href="#collections" class="btn btn-primary">Explore the collections</a>
@@ -305,7 +306,7 @@
       <p>See what's new - our new discussions, new products, work in progress, and behind-the-scenes shots — updated regularly.</p>
     </div>
     <div class="gallery-embed">
-      <!-- REPLACE src below with your Google Photos shared album link -->
+      <!-- REPLACE src below with your Google Drive shared link -->
       <iframe src="https://drive.google.com/embeddedfolderview?id=1OneZeAGPnN-aafSBsHFWnyLlIV5kRLEk#grid" title="GlobalBizz Solutions photo gallery" loading="lazy"></iframe>
     </div>
   </div>
@@ -343,7 +344,7 @@
         <p>We're always open to new partnerships and opportunities — reach out and let's talk about what we can build together.</p>
         <a href="mailto:sales@globalbizz.nl" class="contact-email">sales@globalbizz.nl</a>
         <div style="margin-top:26px;">
-          <a href="https://www.linkedin.com/company/globalbizznl" target="_blank" rel="noopener" class="btn btn-outline" style="border-color:#fff;color:#fff;">Follow us on LinkedIn</a>
+          <a href="https://www.linkedin.com/company/globalbizznl" target="_blank" rel="noopener" class="btn btn-outline">Follow us on LinkedIn</a>
         </div>
       </div>
       <div class="contact-right">
@@ -361,8 +362,12 @@
     <div class="footer-row">
       <div class="footer-brand"><img src="GB_Logo_2026.svg" alt=""><span>GlobalBi<span class="bizz">zz</span> Solutions</span></div>
       <div class="socials">
-        <a href="https://www.instagram.com/global_bizz" aria-label="Instagram">IG</a>
-        <a href="https://www.linkedin.com/company/globalbizznl" aria-label="LinkedIn">in</a>
+        <a href="https://www.instagram.com/global_bizz" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/globalbizznl" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4.98 3.5C4.98 4.9 3.87 6 2.5 6S0 4.9 0 3.5 1.12 1 2.5 1s2.48 1.1 2.48 2.5zM.2 8.4h4.6V23H.2V8.4zM8.4 8.4H13v2h.06c.64-1.15 2.2-2.36 4.53-2.36 4.84 0 5.73 3.05 5.73 7.02V23h-4.6v-6.6c0-1.57-.03-3.6-2.28-3.6-2.29 0-2.64 1.7-2.64 3.47V23h-4.6V8.4z"/></svg>
+        </a>
       </div>
       <div class="footer-meta">GlobalBizz Solutions · Netherlands · KvK 94673543</div>
     </div>
