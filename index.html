@@ -63,6 +63,17 @@
   /* HERO */
   .hero{padding:88px 0 64px;position:relative;overflow:hidden;}
   .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:stretch;}
+  .hero h1{
+    font-family:'Schoolbell',cursive;
+    font-weight:700;
+    white-space:nowrap;
+    font-size:3.8vw;
+    line-height:1.05;
+    margin:0;
+  }
+  @media (max-width:820px){
+    .hero h1{font-size:5.2vw;}
+  }
   .hero h1{font-family:'Schoolbell',cursive;font-weight:700;font-size:clamp(36px,5vw,58px);line-height:1.05;margin:0;}
   .hero h1 .line2{color:var(--blue);}
   .hero-text{text-align:center;display:flex;flex-direction:column;align-items:center;}
@@ -171,16 +182,13 @@
 
   /* CONTACT */
   .contact{padding:88px 0;}
-  .contact-grid{background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:0 18px 40px -24px rgba(17,17,17,0.25);}
-  .contact-left h2{color:var(--ink);}
-  .contact-left p{color:var(--ink-soft);}
-  .contact-email{color:var(--ink);border-bottom:2px solid var(--blue);}
-  .contact-right{background:var(--blue);padding:56px;display:flex;flex-direction:column;justify-content:center;}
-  .contact-right .eyebrow{color:#D6EAF2;}
-  .contact-right h3{font-family:'Anton',sans-serif;font-weight:400;color:#fff;margin-top:8px;font-size:23px;}
-  .contact-right p{color:#DCEDF3;font-size:14.5px;margin-top:10px;line-height:1.55;}
-  .btn-white{margin-top:20px;background:#fff;color:var(--blue-deep);}
-  @media (max-width:820px){.contact-grid{grid-template-columns:1fr;}.contact-left,.contact-right{padding:40px 32px;}}
+  .contact-box{background:var(--blue);color:#fff;border-radius:8px;padding:56px;}
+  .contact-box .eyebrow{color:#D6EAF2;}
+  .contact-box h2{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(26px,3vw,34px);color:#fff;margin:10px 0 0;}
+  .contact-box p{color:#DCEDF3;line-height:1.65;margin-top:14px;max-width:60ch;}
+  .contact-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:28px;}
+  .btn-outline-white{background:transparent;color:#fff;border:1.5px solid #fff;}
+  @media (max-width:820px){.contact-box{padding:36px;}}
 
   /* FOOTER */
   footer{padding:44px 0;}
@@ -337,21 +345,14 @@
 
 <section class="contact" id="contact">
   <div class="wrap">
-    <div class="contact-grid">
-      <div class="contact-left">
-        <p class="eyebrow" style="color:#8FC2D8;">Get in touch</p>
-        <h2>Let's craft meaningful connections.</h2>
-        <p>We're always open to new partnerships and opportunities — reach out and let's talk about what we can build together.</p>
-        <a href="mailto:sales@globalbizz.nl" class="contact-email">sales@globalbizz.nl</a>
-        <div style="margin-top:26px;">
-          <a href="https://www.linkedin.com/company/globalbizznl" target="_blank" rel="noopener" class="btn btn-outline">Follow us on LinkedIn</a>
-        </div>
-      </div>
-      <div class="contact-right">
-        <p class="eyebrow">Contact request</p>
-        <h3>Let's connect</h3>
-        <p>Tell us a little about what you're looking for and we'll send the SoulScribe & EarthenGrace details straight to your inbox.</p>
-        <a href="https://forms.gle/rTHKQgbVV8rNWs6x6" target="_blank" rel="noopener" class="btn btn-white">Get in touch</a>
+    <div class="contact-box">
+      <p class="eyebrow">Get in touch</p>
+      <h2>Let's craft meaningful connections.</h2>
+      <p>We're always open to new partnerships and opportunities — reach out and let's talk about what we can build together.</p>
+      <div class="contact-actions">
+        <a href="mailto:sales@globalbizz.nl" class="btn btn-white">Email us</a>
+        <a href="https://www.linkedin.com/company/globalbizznl" target="_blank" rel="noopener" class="btn btn-outline-white">Follow us on LinkedIn</a>
+        <a href="https://forms.gle/YOUR-FORM-ID-HERE" target="_blank" rel="noopener" class="btn btn-outline-white">Order products</a>
       </div>
     </div>
   </div>
