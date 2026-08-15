@@ -6,7 +6,6 @@
 <title>GlobalBizz Solutions v3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Schoolbell&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet"><style>
   :root{
@@ -239,8 +238,8 @@
         </div>
       </div>
       <div class="gallery-nav">
-        <button type="button" aria-label="Previous photo" onclick="document.querySelector('.hero-gallery').scrollBy({left:-320,behavior:'smooth'})">‹</button>
-        <button type="button" aria-label="Next photo" onclick="document.querySelector('.hero-gallery').scrollBy({left:320,behavior:'smooth'})">›</button>
+        <button type="button" aria-label="Previous photo" onclick="heroGalleryMove(-1)">‹</button>
+        <button type="button" aria-label="Next photo" onclick="heroGalleryMove(1)">›</button>
       </div>
       <div class="hero-dots" id="heroDots"></div>
       <div class="badge-pill"><span class="dot"></span>Netherlands · KvK 94673543</div>
@@ -358,7 +357,7 @@
 <footer>
   <div class="wrap">
     <div class="footer-row">
-      <div class="footer-brand"><img src="GB_Logo_2026.svg" alt=""><span>GlobalBi<span class="bizz">zz</span> Solutions</span>
+      <div class="footer-brand"><img src="GB_Logo_2026.svg" alt=""><span>GlobalBi<span class="bizz">zz</span> Solutions</span></div>
       <div class="socials">
         <a href="https://www.instagram.com/global_bizz" aria-label="Instagram">IG</a>
         <a href="https://www.linkedin.com/company/globalbizznl" aria-label="LinkedIn">in</a>
@@ -367,6 +366,7 @@
     </div>
   </div>
 </footer>
+  
 <script>
 (function(){
   const track = document.getElementById('heroTrack');
