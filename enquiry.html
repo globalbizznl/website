@@ -180,9 +180,13 @@
 
     <h2 class="review-heading" style="margin-top:28px;">Items</h2>
     <div id="reviewList"></div>
-    <a href="#" onclick="goToStep(2);return false;" class="edit-link">Edit quantities</a>
+    <div style="margin-top:8px;">
+      <a href="#" onclick="goToStep(1);return false;" class="edit-link">Edit products</a>
+      <span style="color:var(--ink-soft);margin:0 8px;">·</span>
+      <a href="#" onclick="goToStep(2);return false;" class="edit-link">Edit quantities</a>
+    </div>
 
-        <p style="color:var(--ink-soft);font-size:13.5px;margin-top:24px;">Please note: this enquiry is not a confirmed order. We'll review the details and follow up with an order summary and any questions within 3 working days.</p>
+        <p style="color:var(--ink-soft);font-size:14px;margin-top:24px;">Please note: submitting this enquiry does not confirm an order. We'll review the details and follow up with an order summary and any questions within 3 working days.</p>
 
     <div class="actions">
       <button class="btn btn-outline" onclick="goToStep(3)">← Back</button>
