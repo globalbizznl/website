@@ -182,6 +182,8 @@
     <div id="reviewList"></div>
     <a href="#" onclick="goToStep(2);return false;" class="edit-link">Edit quantities</a>
 
+        <p style="color:var(--ink-soft);font-size:13.5px;margin-top:24px;">Please note: this enquiry is not a confirmed order. We'll review the details and follow up with an order summary and any questions within 3 working days.</p>
+
     <div class="actions">
       <button class="btn btn-outline" onclick="goToStep(3)">← Back</button>
       <button class="btn btn-primary" id="sendBtn" onclick="submitEnquiry()">Send Enquiry</button>
@@ -309,9 +311,10 @@ function validateAndReview(){
   const name = document.getElementById('fName').value.trim();
   const email = document.getElementById('fEmail').value.trim();
   const errEl = document.getElementById('step3Error');
+  const nameOk = name.length >= 3;
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  if(!name || !email || !emailOk){
-    errEl.textContent = !name ? 'Please enter your name.' : (!emailOk ? 'Please enter a valid email address.' : 'Please fill in the required fields.');
+  if(!nameOk || !emailOk){
+    errEl.textContent = !nameOk ? 'Please enter your full name (at least 3 letters).' : 'Please enter a valid email address.';
     errEl.style.display = 'block';
     return;
   }
