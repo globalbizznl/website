@@ -12,7 +12,7 @@
   body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;font-size:16.5px;}
   a{color:var(--blue);}
   img{max-width:100%;display:block;}
-  .wrap{max-width:1000px;margin:0 auto;padding:0 24px;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
 
   /* HEADER — matches index.html */
   header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
@@ -35,12 +35,13 @@
 
   /* PAGE CONTENT */
   .page{padding:40px 0 100px;}
+  .back{display:inline-block;margin-bottom:20px;font-weight:600;font-size:14px;text-decoration:none;}
   h1{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(26px,4vw,38px);margin:0 0 6px;color:var(--ink);}
   .intro{color:var(--ink-soft);margin-bottom:8px;}
 
   .steps{display:flex;gap:8px;margin:24px 0 32px;}
   .step-col{flex:1;display:flex;flex-direction:column-reverse;gap:6px;align-items:center;}
-  .step-dot{width:100%;height:4px;border-radius:2px;background:var(--line);}
+  .step-dot{width:100%;height:8px;border-radius:4px;background:var(--line);}
   .step-dot.done{background:var(--blue);}
   .step-label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-soft);text-align:center;}
   .step-label.active{color:var(--blue);}
@@ -114,22 +115,12 @@
       <img src="GB_Logo_2026.svg" alt="GlobalBizz Solutions logo">
       <span class="brand-text">GlobalBi<span class="bizz">zz</span> Solutions</span>
     </a>
-    <button class="menu-btn" aria-label="Toggle menu" onclick="document.querySelector('.nav-links-wrap').classList.toggle('open')">☰</button>
-    <div class="nav-links-wrap">
-      <nav class="links">
-        <a href="index.html#home">Home</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#soulscribe">SoulScribe</a>
-        <a href="index.html#earthengrace">EarthenGrace</a>
-        <a href="index.html#gallery">Gallery</a>
-        <a href="index.html#contact">Contact</a>
-      </nav>
-      <a href="enquiry.html" class="nav-cta">Submit Enquiry</a>
-    </div>
+    <a href="enquiry.html" class="nav-cta">Submit Enquiry</a>
   </div>
 </header>
 
 <div class="wrap page">
+  <a href="index.html" class="back">← Back to GlobalBizz Solutions</a>
   <h1>Submit Enquiry</h1>
   <p class="intro">Browse our journal covers, pick the ones you're interested in, and let us know quantities.</p>
 
@@ -202,8 +193,8 @@
   <div class="step" id="stepDone">
     <div class="confirm">
       <h1>Thank you!</h1>
-      <p style="color:var(--ink-soft);">Your enquiry has been sent — we'll get back to you shortly.</p>
-      <a href="index.html" class="btn btn-primary" style="margin-top:20px;">Back to site</a>
+        <p style="color:var(--ink-soft);">Your enquiry has been sent — we'll get back to you shortly.</p>
+        <p style="color:var(--ink-soft);font-size:14px;max-width:480px;margin:14px auto 0;">Please note: this enquiry is not a confirmed order. We'll review the details and follow up with an order summary and any questions within 3 working days.</p><a href="index.html" class="btn btn-primary" style="margin-top:20px;">Back to site</a>
     </div>
   </div>
 </div>
@@ -226,12 +217,6 @@
 </footer>
 
 <script>
-document.querySelectorAll('.nav-links-wrap a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.querySelector('.nav-links-wrap').classList.remove('open');
-  });
-});
-
 // REPLACE these two with your deployed Apps Script Web app URLs
 const LIST_PRODUCTS_URL = 'https://script.google.com/macros/s/AKfycbxJI9-45DtwteMt8u1tlGsLCxF_xTW2h4DQJTm1nxzn4peWkdP9ZM20gef2vWgzKMdp3Q/exec';
 const SUBMIT_ENQUIRY_URL = 'https://script.google.com/macros/s/AKfycbwT7UuVYmBygYfJIC343ATlMzPD83EKu38CgLGkTQ8hOKvhsltEXF18uu-tS_C1WiZlcA/exec';
