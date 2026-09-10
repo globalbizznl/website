@@ -10,18 +10,47 @@
   :root{--blue:#156082;--blue-deep:#0B3041;--ink:#121212;--ink-soft:#4C5559;--paper:#FFFFFF;--paper-tint:#F1F6F8;--line:rgba(17,17,17,0.12);}
   *{box-sizing:border-box;}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;font-size:16.5px;}
-  .wrap{max-width:1000px;margin:0 auto;padding:40px 24px 100px;}
   a{color:var(--blue);}
-  h1{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(26px,4vw,38px);margin:0 0 6px;}
-  .back{display:inline-block;margin-bottom:24px;font-weight:600;font-size:14px;text-decoration:none;}
-  .steps{display:flex;gap:8px;margin:20px 0 32px;}
-  .step-dot{flex:1;height:4px;border-radius:2px;background:var(--line);}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px;}
+
+  /* HEADER — matches index.html */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+  .brand img{width:40px;height:40px;}
+  .brand-text{font-family:'Anton',sans-serif;font-size:19px;line-height:1;color:var(--ink);}
+  .brand-text .bizz{color:var(--blue);}
+  nav.links{display:flex;gap:34px;list-style:none;margin:0;padding:0;}
+  nav.links a{text-decoration:none;font-weight:600;font-size:15px;color:var(--ink);}
+  .nav-cta{background:var(--ink);color:#fff;text-decoration:none;padding:10px 20px;border-radius:2px;font-size:14.5px;font-weight:700;}
+  .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:4px;padding:8px 10px;}
+  .nav-links-wrap{display:flex;align-items:center;gap:32px;}
+  @media (max-width:860px){
+    .nav-links-wrap{position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;align-items:flex-start;padding:20px 32px 28px;border-bottom:1px solid var(--line);display:none;}
+    .nav-links-wrap.open{display:flex;}
+    nav.links{flex-direction:column;gap:18px;width:100%;}
+    .menu-btn{display:block;}
+  }
+
+  /* PAGE CONTENT */
+  .page{padding:40px 0 100px;}
+  h1{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(26px,4vw,38px);margin:0 0 6px;color:var(--ink);}
+  .intro{color:var(--ink-soft);margin-bottom:8px;}
+
+  .steps{display:flex;gap:8px;margin:24px 0 32px;}
+  .step-col{flex:1;display:flex;flex-direction:column-reverse;gap:6px;align-items:center;}
+  .step-dot{width:100%;height:4px;border-radius:2px;background:var(--line);}
   .step-dot.done{background:var(--blue);}
+  .step-label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-soft);text-align:center;}
+  .step-label.active{color:var(--blue);}
+  @media (max-width:520px){.step-label{font-size:9px;}}
+
   .step{display:none;}
   .step.active{display:block;}
 
   .toolbar{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center;}
-  .toolbar input[type=text]{flex:1;min-width:200px;padding:11px 14px;border:1px solid var(--line);border-radius:4px;font-size:15px;}
+  .toolbar input[type=text]{flex:1;min-width:200px;padding:11px 14px;border:1px solid var(--line);border-radius:4px;font-size:15px;font-family:inherit;}
   .selected-count{font-weight:700;color:var(--blue);font-size:14px;white-space:nowrap;}
 
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;}
@@ -32,7 +61,7 @@
   .card .check{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:transparent;}
   .card.selected .check{background:var(--blue);border-color:var(--blue);color:#fff;}
 
-  .btn{text-decoration:none;padding:13px 26px;border-radius:2px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;}
+  .btn{text-decoration:none;padding:13px 26px;border-radius:2px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:inherit;}
   .btn-primary{background:var(--blue);color:#fff;}
   .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
   .btn[disabled]{opacity:0.4;cursor:not-allowed;}
@@ -42,7 +71,7 @@
   .qty-row{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);}
   .qty-row img{width:60px;height:60px;object-fit:cover;border-radius:4px;}
   .qty-row .name{flex:1;font-weight:600;font-size:15px;}
-  .qty-row input{width:70px;padding:8px;border:1px solid var(--line);border-radius:4px;font-size:15px;text-align:center;}
+  .qty-row input{width:70px;padding:8px;border:1px solid var(--line);border-radius:4px;font-size:15px;text-align:center;font-family:inherit;}
 
   label{display:block;font-weight:600;font-size:14px;margin:16px 0 6px;}
   input[type=text],input[type=email],input[type=tel],textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:4px;font-size:15px;font-family:inherit;}
@@ -54,20 +83,62 @@
   .status.success{background:#E8F5EC;color:#1E6B3A;}
   .confirm{text-align:center;padding:60px 0;}
   .confirm h1{margin-bottom:12px;}
+
+  .review-heading{font-family:'Anton',sans-serif;font-weight:400;font-size:20px;margin:0 0 4px;color:var(--ink);}
+  .review-contact{color:var(--ink-soft);font-size:14.5px;margin:4px 0 10px;}
+  .edit-link{font-size:13.5px;font-weight:600;text-decoration:underline;display:inline-block;margin-bottom:8px;}
+  .review-row{display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);}
+  .review-row img{width:52px;height:52px;object-fit:cover;border-radius:4px;}
+  .review-row .name{flex:1;font-weight:600;font-size:15px;}
+  .review-row .qty{font-weight:700;color:var(--blue);font-size:14.5px;}
+
+  /* FOOTER — matches index.html */
+  footer{padding:44px 0;}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;padding-top:24px;border-top:1px solid var(--line);}
+  .footer-brand{display:flex;align-items:center;gap:10px;}
+  .footer-brand img{width:26px;height:26px;}
+  .footer-brand span{font-family:'Anton',sans-serif;font-size:15px;color:var(--ink);}
+  .socials{display:flex;gap:12px;}
+  .socials a{width:36px;height:36px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;text-decoration:none;color:#fff;transition:transform .15s ease;}
+  .socials a:hover{transform:translateY(-2px);}
+  .socials a.instagram{background:radial-gradient(circle at 30% 107%, #fdf497, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);}
+  .socials a.linkedin{background:#0A66C2;}
+  .footer-meta{font-size:12.5px;color:var(--ink-soft);}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <a href="index.html" class="back">← Back to GlobalBizz Solutions</a>
+
+<header>
+  <div class="nav wrap" style="position:relative;">
+    <a href="index.html" class="brand">
+      <img src="GB_Logo_2026.svg" alt="GlobalBizz Solutions logo">
+      <span class="brand-text">GlobalBi<span class="bizz">zz</span> Solutions</span>
+    </a>
+    <button class="menu-btn" aria-label="Toggle menu" onclick="document.querySelector('.nav-links-wrap').classList.toggle('open')">☰</button>
+    <div class="nav-links-wrap">
+      <nav class="links">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#soulscribe">SoulScribe</a>
+        <a href="index.html#earthengrace">EarthenGrace</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a href="enquiry.html" class="nav-cta">Submit Enquiry</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap page">
   <h1>Submit Enquiry</h1>
-  <p style="color:var(--ink-soft);">Browse our journal covers, pick the ones you're interested in, and let us know quantities.</p>
+  <p class="intro">Browse our journal covers, pick the ones you're interested in, and let us know quantities.</p>
 
   <div class="steps">
-  <div class="step-dot done" id="dot1"></div>
-  <div class="step-dot" id="dot2"></div>
-  <div class="step-dot" id="dot3"></div>
-  <div class="step-dot" id="dot4"></div>
-</div>
+    <div class="step-col"><div class="step-dot done" id="dot1"></div><div class="step-label active" id="label1">Choose products</div></div>
+    <div class="step-col"><div class="step-dot" id="dot2"></div><div class="step-label" id="label2">Enter quantities</div></div>
+    <div class="step-col"><div class="step-dot" id="dot3"></div><div class="step-label" id="label3">Your details</div></div>
+    <div class="step-col"><div class="step-dot" id="dot4"></div><div class="step-label" id="label4">Review &amp; send</div></div>
+  </div>
 
   <!-- STEP 1: BROWSE -->
   <div class="step active" id="step1">
@@ -75,7 +146,7 @@
       <input type="text" id="searchBox" placeholder="Search by name...">
       <span class="selected-count" id="selCount">0 selected</span>
     </div>
-    <div id="statusArea"></div>
+    <div id="statusArea"><div class="status loading">⏳ Loading products…</div></div>
     <div class="grid" id="productGrid"></div>
     <button class="btn btn-outline load-more" id="loadMoreBtn" style="display:none;">Load more</button>
     <div class="actions">
@@ -103,29 +174,30 @@
     <input type="tel" id="fPhone">
     <label>Comments</label>
     <textarea id="fComments" placeholder="Anything else we should know?"></textarea>
+    <div class="status error" id="step3Error" style="display:none;"></div>
     <div class="actions">
       <button class="btn btn-outline" onclick="goToStep(2)">← Back</button>
-      <button class="btn btn-primary" onclick="goToStep(4)">Next: Review →</button>
+      <button class="btn btn-primary" onclick="validateAndReview()">Next: Review →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: REVIEW & SEND (read-only, edit via links back) -->
+  <div class="step" id="step4">
+    <h2 class="review-heading">Your details</h2>
+    <p class="review-contact" id="reviewContact"></p>
+    <a href="#" onclick="goToStep(3);return false;" class="edit-link">Edit details</a>
+
+    <h2 class="review-heading" style="margin-top:28px;">Items</h2>
+    <div id="reviewList"></div>
+    <a href="#" onclick="goToStep(2);return false;" class="edit-link">Edit quantities</a>
+
+    <div class="actions">
+      <button class="btn btn-outline" onclick="goToStep(3)">← Back</button>
+      <button class="btn btn-primary" id="sendBtn" onclick="submitEnquiry()">Send Enquiry</button>
     </div>
     <div id="submitStatus"></div>
   </div>
 
-  <!-- STEP 4: REVIEW & SEND -->
-<div class="step" id="step4">
-  <h2 style="font-family:'Anton',sans-serif;font-weight:400;font-size:20px;margin:0 0 4px;">Your details</h2>
-  <p style="color:var(--ink-soft);font-size:14.5px;margin:4px 0 20px;" id="reviewContact"></p>
-  <a href="#" onclick="goToStep(3);return false;" style="font-size:13.5px;font-weight:600;">Edit details</a>
-
-  <h2 style="font-family:'Anton',sans-serif;font-weight:400;font-size:20px;margin:28px 0 4px;">Items — adjust quantities if needed</h2>
-  <div id="reviewList"></div>
-
-  <div class="actions">
-    <button class="btn btn-outline" onclick="goToStep(3)">← Back</button>
-    <button class="btn btn-primary" id="sendBtn" onclick="submitEnquiry()">Send Enquiry</button>
-  </div>
-  <div id="submitStatus"></div>
-</div>
-  
   <!-- CONFIRMATION -->
   <div class="step" id="stepDone">
     <div class="confirm">
@@ -136,14 +208,38 @@
   </div>
 </div>
 
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <div class="footer-brand"><img src="GB_Logo_2026.svg" alt=""><span>GlobalBi<span class="bizz">zz</span> Solutions</span></div>
+      <div class="socials">
+        <a href="https://www.instagram.com/global_bizz" aria-label="Instagram" class="instagram">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.5.5.9 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.76 4.9 4.9 0 0 1-1.76 1.15c-.64.25-1.37.42-2.43.47-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.76-1.15 4.9 4.9 0 0 1-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76A4.9 4.9 0 0 1 5.44 2.53c.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.28 2 12 2zm0 1.8c-2.67 0-2.99.01-4.04.06-.87.04-1.34.18-1.65.3-.42.16-.72.36-1.03.67-.31.31-.5.61-.67 1.03-.12.31-.26.78-.3 1.65C4.26 8.5 4.25 8.83 4.25 12s.01 3.5.06 4.55c.04.87.18 1.34.3 1.65.16.42.36.72.67 1.03.31.31.61.5 1.03.67.31.12.78.26 1.65.3 1.05.05 1.37.06 4.04.06s2.99-.01 4.04-.06c.87-.04 1.34-.18 1.65-.3.42-.16.72-.36 1.03-.67.31-.31.5-.61.67-1.03.12-.31.26-.78.3-1.65.05-1.05.06-1.37.06-4.55s-.01-3.5-.06-4.55c-.04-.87-.18-1.34-.3-1.65a2.8 2.8 0 0 0-.67-1.03 2.8 2.8 0 0 0-1.03-.67c-.31-.12-.78-.26-1.65-.3C14.99 3.81 14.67 3.8 12 3.8zm0 3.05a5.15 5.15 0 1 1 0 10.3 5.15 5.15 0 0 1 0-10.3zm0 1.8a3.35 3.35 0 1 0 0 6.7 3.35 3.35 0 0 0 0-6.7zm5.35-1.99a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/globalbizznl" aria-label="LinkedIn" class="linkedin">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.15 1.45-2.15 2.94v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+        </a>
+      </div>
+      <div class="footer-meta">GlobalBizz Solutions · Netherlands · KvK 94673543 · <a href="privacy.html" style="color:inherit;">Privacy Policy</a></div>
+    </div>
+  </div>
+</footer>
+
 <script>
+document.querySelectorAll('.nav-links-wrap a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.nav-links-wrap').classList.remove('open');
+  });
+});
+
 // REPLACE these two with your deployed Apps Script Web app URLs
-const LIST_PRODUCTS_URL = 'https://script.google.com/macros/s/AKfycbxJI9-45DtwteMt8u1tlGsLCxF_xTW2h4DQJTm1nxzn4peWkdP9ZM20gef2vWgzKMdp3Q/exec';
-const SUBMIT_ENQUIRY_URL = 'https://script.google.com/macros/s/AKfycbwT7UuVYmBygYfJIC343ATlMzPD83EKu38CgLGkTQ8hOKvhsltEXF18uu-tS_C1WiZlcA/exec';
+const LIST_PRODUCTS_URL = 'PASTE_LIST_PRODUCTS_WEB_APP_URL_HERE';
+const SUBMIT_ENQUIRY_URL = 'PASTE_SUBMIT_ENQUIRY_WEB_APP_URL_HERE';
 
 let allProducts = [];
 let filteredProducts = [];
 let selectedIds = new Set();
+let quantities = {};
 let visibleCount = 40;
 const PAGE_SIZE = 40;
 
@@ -158,6 +254,7 @@ fetch(LIST_PRODUCTS_URL)
   .then(data => {
     allProducts = data;
     filteredProducts = data;
+    statusArea.innerHTML = '';
     renderGrid();
   })
   .catch(() => {
@@ -201,12 +298,14 @@ function updateSelectedCount(){
 function goToStep(n){
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
   document.getElementById('step' + n).classList.add('active');
-  [1,2,3,4].forEach(i => document.getElementById('dot'+i).classList.toggle('done', i <= n));
+  [1,2,3,4].forEach(i => {
+    document.getElementById('dot'+i).classList.toggle('done', i <= n);
+    document.getElementById('label'+i).classList.toggle('active', i === n);
+  });
   if(n === 2) renderQtyList();
   if(n === 4) renderReview();
+  window.scrollTo({top:0, behavior:'smooth'});
 }
-
-let quantities = {};
 
 function renderQtyList(){
   const list = document.getElementById('qtyList');
@@ -221,8 +320,22 @@ function renderQtyList(){
   });
 }
 
+function validateAndReview(){
+  const name = document.getElementById('fName').value.trim();
+  const email = document.getElementById('fEmail').value.trim();
+  const errEl = document.getElementById('step3Error');
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if(!name || !email || !emailOk){
+    errEl.textContent = !name ? 'Please enter your name.' : (!emailOk ? 'Please enter a valid email address.' : 'Please fill in the required fields.');
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+  goToStep(4);
+}
+
 function renderReview(){
-  document.getElementById('reviewContact').innerHTML =
+  document.getElementById('reviewContact').textContent =
     document.getElementById('fName').value + ' · ' +
     document.getElementById('fEmail').value +
     (document.getElementById('fPhone').value ? ' · ' + document.getElementById('fPhone').value : '');
@@ -231,9 +344,8 @@ function renderReview(){
   list.innerHTML = '';
   allProducts.filter(p => selectedIds.has(p.id)).forEach(p => {
     const row = document.createElement('div');
-    row.className = 'qty-row';
-    row.innerHTML = `<img src="${p.thumbnailUrl}" alt="${p.name}"><div class="name">${p.name}</div><input type="number" min="1" value="${quantities[p.id]}" data-id="${p.id}">`;
-    row.querySelector('input').oninput = e => { quantities[p.id] = parseInt(e.target.value,10) || 1; };
+    row.className = 'review-row';
+    row.innerHTML = `<img src="${p.thumbnailUrl}" alt="${p.name}"><div class="name">${p.name}</div><div class="qty">×${quantities[p.id] || 1}</div>`;
     list.appendChild(row);
   });
 }
@@ -244,11 +356,6 @@ function submitEnquiry(){
   const phone = document.getElementById('fPhone').value.trim();
   const comments = document.getElementById('fComments').value.trim();
   const statusEl = document.getElementById('submitStatus');
-
-  if(!name || !email){
-    statusEl.innerHTML = '<div class="status error">Please fill in your name and email.</div>';
-    return;
-  }
 
   const items = allProducts.filter(p => selectedIds.has(p.id)).map(p => ({ name: p.name, qty: quantities[p.id] || 1 }));
 
@@ -263,6 +370,7 @@ function submitEnquiry(){
   .then(() => {
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
     document.getElementById('stepDone').classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
   })
   .catch(() => {
     statusEl.innerHTML = '<div class="status error">Something went wrong — please try again or email sales@globalbizz.nl directly.</div>';
