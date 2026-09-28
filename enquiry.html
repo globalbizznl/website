@@ -58,6 +58,7 @@
   .toolbar{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center;}
   .toolbar input[type=text]{flex:1;min-width:200px;padding:11px 14px;border:1px solid var(--line);border-radius:4px;font-size:15px;font-family:inherit;}
   .selected-count{font-weight:700;color:var(--blue);font-size:14px;white-space:nowrap;}
+  .showing-count{font-size:13px;color:var(--ink-soft);margin:-6px 0 16px;}
 
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;}
   .card{border:2px solid var(--line);border-radius:6px;overflow:hidden;cursor:pointer;position:relative;background:#fff;}
@@ -142,6 +143,7 @@
       <input type="text" id="searchBox" placeholder="Search by name...">
       <span class="selected-count" id="selCount">0 selected</span>
     </div>
+    <div class="showing-count" id="showingCount"></div>
     <div id="statusArea"><div class="status loading">⏳ Loading products…</div></div>
     <div class="grid" id="productGrid"></div>
     <button class="btn btn-outline load-more" id="loadMoreBtn" style="display:none;">Load more</button>
@@ -276,6 +278,20 @@ function renderGrid(){
   });
   loadMoreBtn.style.display = visibleCount < filteredProducts.length ? 'block' : 'none';
   updateSelectedCount();
+  updateShowingCount();
+}
+
+function updateShowingCount(){
+  const shown = Math.min(visibleCount, filteredProducts.length);
+  const total = filteredProducts.length;
+  const showingEl = document.getElementById('showingCount');
+  if(total === 0){
+    showingEl.textContent = '';
+  } else if(shown < total){
+    showingEl.textContent = `Showing ${shown} of ${total} products — scroll down and tap "Load more" to see the rest.`;
+  } else {
+    showingEl.textContent = `Showing all ${total} products.`;
+  }
 }
 
 loadMoreBtn.onclick = () => { visibleCount += PAGE_SIZE; renderGrid(); };
