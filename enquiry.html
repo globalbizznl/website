@@ -79,12 +79,17 @@
   .qty-card img{width:64px;height:64px;object-fit:cover;border-radius:4px;flex-shrink:0;}
   .qty-card .qty-body{flex:1;min-width:0;}
   .qty-card .name{font-weight:600;font-size:15px;margin-bottom:10px;}
-  .qty-fields{display:grid;grid-template-columns:60px 76px 1fr 1fr;gap:8px;margin-bottom:10px;}
-  @media (max-width:560px){.qty-fields{grid-template-columns:1fr 1fr;}}
-  .qty-fields label{font-size:11.5px;font-weight:600;color:var(--ink-soft);margin:0 0 4px;text-transform:uppercase;letter-spacing:.02em;}
-  .qty-fields input,.qty-fields select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:4px;font-size:14.5px;font-family:inherit;}
-  .customize-check{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink-soft);cursor:pointer;}
+
+  .variant-block{border:1px solid var(--line);border-radius:6px;padding:10px 10px 4px;margin-bottom:8px;}
+  .qty-fields{display:grid;grid-template-columns:56px 74px 1fr 1fr 26px;gap:8px;margin-bottom:8px;align-items:end;}
+  @media (max-width:600px){.qty-fields{grid-template-columns:1fr 1fr;}
+    .qty-fields .remove-cell{grid-column:1/-1;text-align:right;}}
+  .qty-fields label{font-size:11px;font-weight:600;color:var(--ink-soft);margin:0 0 4px;text-transform:uppercase;letter-spacing:.02em;}
+  .qty-fields input,.qty-fields select{width:100%;padding:9px 8px;border:1px solid var(--line);border-radius:4px;font-size:14px;font-family:inherit;}
+  .remove-variant-btn{background:none;border:1px solid var(--line);border-radius:4px;width:100%;height:38px;color:#9B1C1C;font-size:15px;cursor:pointer;line-height:1;}
+  .customize-check{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink-soft);cursor:pointer;margin-bottom:10px;}
   .customize-check input{width:auto;margin:0;}
+  .add-variant-btn{background:none;border:none;color:var(--blue);font-weight:700;font-size:13.5px;cursor:pointer;padding:4px 0 2px;font-family:inherit;}
 
   label{display:block;font-weight:600;font-size:14px;margin:16px 0 6px;}
   input[type=text],input[type=email],input[type=tel],textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:4px;font-size:15px;font-family:inherit;}
@@ -100,13 +105,14 @@
   .review-heading{font-family:'Anton',sans-serif;font-weight:400;font-size:20px;margin:0 0 4px;color:var(--ink);}
   .review-contact{color:var(--ink-soft);font-size:14.5px;margin:4px 0 10px;}
   .edit-link{font-size:13.5px;font-weight:600;text-decoration:underline;display:inline-block;margin-bottom:8px;}
-  .review-row{display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);}
-  .review-row img{width:52px;height:52px;object-fit:cover;border-radius:4px;}
-  .review-row .review-body{flex:1;min-width:0;}
-  .review-row .name{font-weight:600;font-size:15px;}
-  .review-row .meta{font-size:13px;color:var(--ink-soft);margin-top:2px;}
-  .review-row .qty{font-weight:700;color:var(--blue);font-size:14.5px;white-space:nowrap;}
-  .customize-flag{display:inline-block;margin-top:4px;font-size:12px;font-weight:700;color:#9B6B00;background:#FFF4DD;padding:2px 8px;border-radius:3px;}
+  .review-product{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);}
+  .review-product img{width:52px;height:52px;object-fit:cover;border-radius:4px;flex-shrink:0;}
+  .review-product .review-body{flex:1;min-width:0;}
+  .review-product .name{font-weight:600;font-size:15px;margin-bottom:6px;}
+  .review-variant{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 0;}
+  .review-variant .meta{font-size:13px;color:var(--ink-soft);}
+  .review-variant .qty{font-weight:700;color:var(--blue);font-size:14.5px;white-space:nowrap;}
+  .customize-flag{display:inline-block;margin-top:2px;font-size:12px;font-weight:700;color:#9B6B00;background:#FFF4DD;padding:2px 8px;border-radius:3px;}
 
   /* FOOTER — matches index.html */
   footer{padding:44px 0;}
@@ -246,8 +252,7 @@ const SUBMIT_ENQUIRY_URL = 'https://script.google.com/macros/s/AKfycbwT7UuVYmByg
 let allProducts = [];
 let filteredProducts = [];
 let selectedIds = new Set();
-let quantities = {};
-let itemOptions = {}; // { [productId]: { size, paperColor, edge, customize } }
+let itemVariants = {}; // { [productId]: [ {qty, size, paperColor, edge, customize}, ... ] }
 let visibleCount = 40;
 const PAGE_SIZE = 40;
 const SIZE_OPTIONS = ['A4', 'A5', 'A6', 'Pocket'];
@@ -335,58 +340,81 @@ function goToStep(n){
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
+function newVariant(p){
+  return {
+    qty: 1,
+    size: p.defaultSize || DEFAULT_SIZE,
+    paperColor: p.defaultPaperColor || DEFAULT_PAPER_COLOR,
+    edge: p.defaultEdge || DEFAULT_EDGE,
+    customize: false
+  };
+}
+
 function renderQtyList(){
   const list = document.getElementById('qtyList');
   list.innerHTML = '';
   allProducts.filter(p => selectedIds.has(p.id)).forEach(p => {
-    if(!(p.id in quantities)) quantities[p.id] = 1;
-    if(!(p.id in itemOptions)) itemOptions[p.id] = {
-      size: p.defaultSize || DEFAULT_SIZE,
-      paperColor: p.defaultPaperColor || DEFAULT_PAPER_COLOR,
-      edge: p.defaultEdge || DEFAULT_EDGE,
-      customize: false
-    };
-    const opts = itemOptions[p.id];
-
-    const sizeOptsHtml = SIZE_OPTIONS.map(s => `<option value="${s}" ${s===opts.size?'selected':''}>${s}</option>`).join('');
-    const colorOptsHtml = PAPER_COLOR_OPTIONS.map(s => `<option value="${s}" ${s===opts.paperColor?'selected':''}>${s}</option>`).join('');
-    const edgeOptsHtml = EDGE_OPTIONS.map(s => `<option value="${s}" ${s===opts.edge?'selected':''}>${s}</option>`).join('');
+    if(!(p.id in itemVariants) || itemVariants[p.id].length === 0){
+      itemVariants[p.id] = [ newVariant(p) ];
+    }
+    const variants = itemVariants[p.id];
 
     const card = document.createElement('div');
     card.className = 'qty-card';
+
+    const variantsHtml = variants.map((v, idx) => {
+      const sizeOptsHtml = SIZE_OPTIONS.map(s => `<option value="${s}" ${s===v.size?'selected':''}>${s}</option>`).join('');
+      const colorOptsHtml = PAPER_COLOR_OPTIONS.map(s => `<option value="${s}" ${s===v.paperColor?'selected':''}>${s}</option>`).join('');
+      const edgeOptsHtml = EDGE_OPTIONS.map(s => `<option value="${s}" ${s===v.edge?'selected':''}>${s}</option>`).join('');
+      const removeBtnHtml = variants.length > 1
+        ? `<div class="remove-cell"><button type="button" class="remove-variant-btn" data-idx="${idx}" data-action="remove" aria-label="Remove this variation">✕</button></div>`
+        : `<div></div>`;
+      return `
+        <div class="variant-block" data-idx="${idx}">
+          <div class="qty-fields">
+            <div><label>Qty</label><input type="number" min="1" value="${v.qty}" data-idx="${idx}" data-role="qty"></div>
+            <div><label>Size</label><select data-idx="${idx}" data-role="size">${sizeOptsHtml}</select></div>
+            <div><label>Paper color</label><select data-idx="${idx}" data-role="paperColor">${colorOptsHtml}</select></div>
+            <div><label>Edges</label><select data-idx="${idx}" data-role="edge">${edgeOptsHtml}</select></div>
+            ${removeBtnHtml}
+          </div>
+          <label class="customize-check">
+            <input type="checkbox" data-idx="${idx}" data-role="customize" ${v.customize ? 'checked' : ''}>
+            Needs customization (we'll contact you separately)
+          </label>
+        </div>`;
+    }).join('');
+
     card.innerHTML = `
       <img src="${p.thumbnailUrl}" alt="${p.name}">
       <div class="qty-body">
         <div class="name">${p.name}</div>
-        <div class="qty-fields">
-          <div>
-            <label>Qty</label>
-            <input type="number" min="1" value="${quantities[p.id]}" data-role="qty">
-          </div>
-          <div>
-            <label>Size</label>
-            <select data-role="size">${sizeOptsHtml}</select>
-          </div>
-          <div>
-            <label>Paper color</label>
-            <select data-role="paperColor">${colorOptsHtml}</select>
-          </div>
-          <div>
-            <label>Edges</label>
-            <select data-role="edge">${edgeOptsHtml}</select>
-          </div>
-        </div>
-        <label class="customize-check">
-          <input type="checkbox" data-role="customize" ${opts.customize ? 'checked' : ''}>
-          Needs customization (we'll contact you separately)
-        </label>
+        ${variantsHtml}
+        <button type="button" class="add-variant-btn" data-action="add">+ Add another variation of this product</button>
       </div>`;
 
-    card.querySelector('[data-role="qty"]').oninput = e => { quantities[p.id] = parseInt(e.target.value,10) || 1; };
-    card.querySelector('[data-role="size"]').onchange = e => { itemOptions[p.id].size = e.target.value; };
-    card.querySelector('[data-role="paperColor"]').onchange = e => { itemOptions[p.id].paperColor = e.target.value; };
-    card.querySelector('[data-role="edge"]').onchange = e => { itemOptions[p.id].edge = e.target.value; };
-    card.querySelector('[data-role="customize"]').onchange = e => { itemOptions[p.id].customize = e.target.checked; };
+    card.querySelectorAll('[data-role="qty"]').forEach(el => {
+      el.oninput = e => { variants[+e.target.dataset.idx].qty = parseInt(e.target.value,10) || 1; };
+    });
+    card.querySelectorAll('[data-role="size"]').forEach(el => {
+      el.onchange = e => { variants[+e.target.dataset.idx].size = e.target.value; };
+    });
+    card.querySelectorAll('[data-role="paperColor"]').forEach(el => {
+      el.onchange = e => { variants[+e.target.dataset.idx].paperColor = e.target.value; };
+    });
+    card.querySelectorAll('[data-role="edge"]').forEach(el => {
+      el.onchange = e => { variants[+e.target.dataset.idx].edge = e.target.value; };
+    });
+    card.querySelectorAll('[data-role="customize"]').forEach(el => {
+      el.onchange = e => { variants[+e.target.dataset.idx].customize = e.target.checked; };
+    });
+    card.querySelectorAll('[data-action="remove"]').forEach(el => {
+      el.onclick = e => { variants.splice(+e.target.dataset.idx, 1); renderQtyList(); };
+    });
+    card.querySelector('[data-action="add"]').onclick = () => {
+      variants.push(newVariant(p));
+      renderQtyList();
+    };
 
     list.appendChild(card);
   });
@@ -416,16 +444,22 @@ function renderReview(){
   const list = document.getElementById('reviewList');
   list.innerHTML = '';
   allProducts.filter(p => selectedIds.has(p.id)).forEach(p => {
-    const opts = itemOptions[p.id] || { size: DEFAULT_SIZE, paperColor: DEFAULT_PAPER_COLOR, edge: DEFAULT_EDGE, customize: false };
+    const variants = itemVariants[p.id] || [ newVariant(p) ];
+    const variantsHtml = variants.map(v => `
+      <div class="review-variant">
+        <div class="meta">
+          ${v.size} · ${v.paperColor} paper, ${v.edge} edges
+          ${v.customize ? '<br><span class="customize-flag">Customization requested</span>' : ''}
+        </div>
+        <div class="qty">×${v.qty}</div>
+      </div>`).join('');
     const row = document.createElement('div');
-    row.className = 'review-row';
+    row.className = 'review-product';
     row.innerHTML = `<img src="${p.thumbnailUrl}" alt="${p.name}">
       <div class="review-body">
         <div class="name">${p.name}</div>
-        <div class="meta">${opts.size} · ${opts.paperColor} paper, ${opts.edge} edges</div>
-        ${opts.customize ? '<span class="customize-flag">Customization requested</span>' : ''}
-      </div>
-      <div class="qty">×${quantities[p.id] || 1}</div>`;
+        ${variantsHtml}
+      </div>`;
     list.appendChild(row);
   });
 }
@@ -437,9 +471,12 @@ function submitEnquiry(){
   const comments = document.getElementById('fComments').value.trim();
   const statusEl = document.getElementById('submitStatus');
 
-  const items = allProducts.filter(p => selectedIds.has(p.id)).map(p => {
-    const opts = itemOptions[p.id] || { size: DEFAULT_SIZE, paperColor: DEFAULT_PAPER_COLOR, edge: DEFAULT_EDGE, customize: false };
-    return { name: p.name, qty: quantities[p.id] || 1, size: opts.size, paperColor: opts.paperColor, edge: opts.edge, customize: opts.customize };
+  const items = [];
+  allProducts.filter(p => selectedIds.has(p.id)).forEach(p => {
+    const variants = itemVariants[p.id] || [ newVariant(p) ];
+    variants.forEach(v => {
+      items.push({ name: p.name, qty: v.qty, size: v.size, paperColor: v.paperColor, edge: v.edge, customize: v.customize });
+    });
   });
 
   document.getElementById('sendBtn').disabled = true;
