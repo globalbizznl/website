@@ -79,8 +79,8 @@
   .qty-card img{width:64px;height:64px;object-fit:cover;border-radius:4px;flex-shrink:0;}
   .qty-card .qty-body{flex:1;min-width:0;}
   .qty-card .name{font-weight:600;font-size:15px;margin-bottom:10px;}
-  .qty-fields{display:grid;grid-template-columns:80px 1fr 1fr;gap:10px;margin-bottom:10px;}
-  @media (max-width:520px){.qty-fields{grid-template-columns:1fr 1fr;}}
+  .qty-fields{display:grid;grid-template-columns:60px 76px 1fr 1fr;gap:8px;margin-bottom:10px;}
+  @media (max-width:560px){.qty-fields{grid-template-columns:1fr 1fr;}}
   .qty-fields label{font-size:11.5px;font-weight:600;color:var(--ink-soft);margin:0 0 4px;text-transform:uppercase;letter-spacing:.02em;}
   .qty-fields input,.qty-fields select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:4px;font-size:14.5px;font-family:inherit;}
   .customize-check{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink-soft);cursor:pointer;}
@@ -247,11 +247,15 @@ let allProducts = [];
 let filteredProducts = [];
 let selectedIds = new Set();
 let quantities = {};
-let itemOptions = {}; // { [productId]: { size, paper, customize } }
+let itemOptions = {}; // { [productId]: { size, paperColor, edge, customize } }
 let visibleCount = 40;
 const PAGE_SIZE = 40;
-const SIZE_OPTIONS = ['A5', 'A6', 'Travel (pocket)'];
-const PAPER_OPTIONS = ['Lined', 'Blank', 'Dotted'];
+const SIZE_OPTIONS = ['A4', 'A5', 'A6', 'Pocket'];
+const DEFAULT_SIZE = 'A5';
+const PAPER_COLOR_OPTIONS = ['Yellow', 'White'];
+const DEFAULT_PAPER_COLOR = 'Yellow';
+const EDGE_OPTIONS = ['Deckled', 'Sharp'];
+const DEFAULT_EDGE = 'Deckled';
 
 const grid = document.getElementById('productGrid');
 const statusArea = document.getElementById('statusArea');
@@ -336,11 +340,17 @@ function renderQtyList(){
   list.innerHTML = '';
   allProducts.filter(p => selectedIds.has(p.id)).forEach(p => {
     if(!(p.id in quantities)) quantities[p.id] = 1;
-    if(!(p.id in itemOptions)) itemOptions[p.id] = { size: SIZE_OPTIONS[0], paper: PAPER_OPTIONS[0], customize: false };
+    if(!(p.id in itemOptions)) itemOptions[p.id] = {
+      size: p.defaultSize || DEFAULT_SIZE,
+      paperColor: p.defaultPaperColor || DEFAULT_PAPER_COLOR,
+      edge: p.defaultEdge || DEFAULT_EDGE,
+      customize: false
+    };
     const opts = itemOptions[p.id];
 
     const sizeOptsHtml = SIZE_OPTIONS.map(s => `<option value="${s}" ${s===opts.size?'selected':''}>${s}</option>`).join('');
-    const paperOptsHtml = PAPER_OPTIONS.map(s => `<option value="${s}" ${s===opts.paper?'selected':''}>${s}</option>`).join('');
+    const colorOptsHtml = PAPER_COLOR_OPTIONS.map(s => `<option value="${s}" ${s===opts.paperColor?'selected':''}>${s}</option>`).join('');
+    const edgeOptsHtml = EDGE_OPTIONS.map(s => `<option value="${s}" ${s===opts.edge?'selected':''}>${s}</option>`).join('');
 
     const card = document.createElement('div');
     card.className = 'qty-card';
@@ -358,8 +368,12 @@ function renderQtyList(){
             <select data-role="size">${sizeOptsHtml}</select>
           </div>
           <div>
-            <label>Paper type</label>
-            <select data-role="paper">${paperOptsHtml}</select>
+            <label>Paper color</label>
+            <select data-role="paperColor">${colorOptsHtml}</select>
+          </div>
+          <div>
+            <label>Edges</label>
+            <select data-role="edge">${edgeOptsHtml}</select>
           </div>
         </div>
         <label class="customize-check">
@@ -370,7 +384,8 @@ function renderQtyList(){
 
     card.querySelector('[data-role="qty"]').oninput = e => { quantities[p.id] = parseInt(e.target.value,10) || 1; };
     card.querySelector('[data-role="size"]').onchange = e => { itemOptions[p.id].size = e.target.value; };
-    card.querySelector('[data-role="paper"]').onchange = e => { itemOptions[p.id].paper = e.target.value; };
+    card.querySelector('[data-role="paperColor"]').onchange = e => { itemOptions[p.id].paperColor = e.target.value; };
+    card.querySelector('[data-role="edge"]').onchange = e => { itemOptions[p.id].edge = e.target.value; };
     card.querySelector('[data-role="customize"]').onchange = e => { itemOptions[p.id].customize = e.target.checked; };
 
     list.appendChild(card);
@@ -401,13 +416,13 @@ function renderReview(){
   const list = document.getElementById('reviewList');
   list.innerHTML = '';
   allProducts.filter(p => selectedIds.has(p.id)).forEach(p => {
-    const opts = itemOptions[p.id] || { size: SIZE_OPTIONS[0], paper: PAPER_OPTIONS[0], customize: false };
+    const opts = itemOptions[p.id] || { size: DEFAULT_SIZE, paperColor: DEFAULT_PAPER_COLOR, edge: DEFAULT_EDGE, customize: false };
     const row = document.createElement('div');
     row.className = 'review-row';
     row.innerHTML = `<img src="${p.thumbnailUrl}" alt="${p.name}">
       <div class="review-body">
         <div class="name">${p.name}</div>
-        <div class="meta">${opts.size} · ${opts.paper} paper</div>
+        <div class="meta">${opts.size} · ${opts.paperColor} paper, ${opts.edge} edges</div>
         ${opts.customize ? '<span class="customize-flag">Customization requested</span>' : ''}
       </div>
       <div class="qty">×${quantities[p.id] || 1}</div>`;
@@ -423,8 +438,8 @@ function submitEnquiry(){
   const statusEl = document.getElementById('submitStatus');
 
   const items = allProducts.filter(p => selectedIds.has(p.id)).map(p => {
-    const opts = itemOptions[p.id] || { size: SIZE_OPTIONS[0], paper: PAPER_OPTIONS[0], customize: false };
-    return { name: p.name, qty: quantities[p.id] || 1, size: opts.size, paper: opts.paper, customize: opts.customize };
+    const opts = itemOptions[p.id] || { size: DEFAULT_SIZE, paperColor: DEFAULT_PAPER_COLOR, edge: DEFAULT_EDGE, customize: false };
+    return { name: p.name, qty: quantities[p.id] || 1, size: opts.size, paperColor: opts.paperColor, edge: opts.edge, customize: opts.customize };
   });
 
   document.getElementById('sendBtn').disabled = true;
