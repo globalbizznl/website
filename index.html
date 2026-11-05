@@ -52,8 +52,8 @@
   nav.links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--blue);transition:width .25s ease;}
   nav.links a:hover::after{width:100%;}
   .nav-cta{background:var(--ink);color:#fff;text-decoration:none;padding:10px 20px;border-radius:2px;font-size:14.5px;font-weight:700;white-space:nowrap;}
-  .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:4px;padding:8px 10px;}
-  .nav-links-wrap{display:flex;align-items:center;gap:24px;}
+  .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:4px;padding:8px 10px;order:3;margin-left:10px;}
+  .nav-links-wrap{display:flex;align-items:center;gap:24px;margin-left:auto;order:1;}
   @media (max-width:1100px){
     .nav-links-wrap{position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;align-items:flex-start;padding:20px 32px 28px;border-bottom:1px solid var(--line);display:none;}
     .nav-links-wrap.open{display:flex;}
@@ -226,7 +226,10 @@
 
   /* LANGUAGE */
   .i18n-pending body{visibility:hidden;}
-  .lang-select{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:2px;padding:9px 10px;cursor:pointer;}
+  .lang-select{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:2px;padding:9px 10px;cursor:pointer;order:2;margin-left:24px;}
+  /* small screens: dropdown stays visible next to the hamburger, never inside the menu */
+  @media (max-width:1100px){.lang-select{margin-left:auto;}}
+  @media (max-width:480px){.nav{padding:14px 16px;}.brand-text{display:none;}.lang-select{padding:8px 8px;font-size:13px;}}
 </style>
 </head>
 <body>
@@ -247,12 +250,12 @@
         <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
         <a href="#contact" data-i18n="nav_contact">Contact</a>
       </nav>
-      <select class="lang-select" aria-label="Taal / Language">
-        <option value="nl">Nederlands</option>
-        <option value="en">English</option>
-      </select>
       <a href="enquiry.html" class="nav-cta" data-i18n="nav_cta">Submit Enquiry</a>
     </div>
+    <select class="lang-select" aria-label="Taal / Language">
+      <option value="nl">Nederlands</option>
+      <option value="en">English</option>
+    </select>
   </div>
 </header>
 
@@ -467,7 +470,7 @@
   </div>
 </footer>
   
-<script src="i18n.js?v=1"></script>
+<script src="i18n.js?v=2"></script>
 <script>
 function makeSwipableGallery(trackId, dotsId, moveVarName){
   const track = document.getElementById(trackId);
