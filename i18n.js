@@ -136,13 +136,13 @@
   nl.pv_li_email = 'Jouw e-mailadres';
   nl.pv_li_phone = 'Jouw telefoonnummer';
   nl.pv_li_msg = 'Opmerkingen of toelichting die je zelf toevoegt';
-  nl.pv_no_tracking = 'Wij gebruiken geen trackingcookies, analysetools of advertentiepixels. De site slaat alleen je gekozen taal op in je browser, zodat die onthouden kan worden; dit wordt niet gebruikt om je te volgen. Productfoto\'s worden geladen via Google Drive en lettertypen via Google Fonts, en de site wordt gehost op GitHub Pages. Deze partijen kunnen daarom technische gegevens, zoals je IP-adres, ontvangen wanneer je browser die bestanden opvraagt.';
+  nl.pv_no_tracking = 'Wij gebruiken geen trackingcookies, analysetools of advertentiepixels. De site slaat alleen je gekozen taal op in je browser, zodat die onthouden kan worden; dit wordt niet gebruikt om je te volgen. Productfoto\'s en lettertypen worden geladen via Google, en de site wordt gehost op GitHub Pages. Deze partijen kunnen daarom technische gegevens, zoals je IP-adres, ontvangen wanneer je browser die bestanden opvraagt.';
   nl.pv_h_why = 'Waarom wij deze gegevens verzamelen';
   nl.pv_why = 'Wij gebruiken deze gegevens uitsluitend om op jouw aanvraag te reageren — bijvoorbeeld om een ordersamenvatting of offerte op te stellen, een groothandelsverzoek te beantwoorden of een maatwerkbestelling te bespreken. Wij gebruiken ze niet voor marketing, tenzij je daar apart toestemming voor geeft, en wij verkopen of verhuren jouw gegevens nooit aan derden.';
   nl.pv_h_basis = 'Rechtsgrond';
   nl.pv_basis_html = 'Wij verwerken jouw gegevens op basis van jouw <strong>toestemming</strong> (gegeven bij het verzenden van het formulier), om op jouw verzoek stappen te zetten voorafgaand aan een overeenkomst, en ons <strong>gerechtvaardigd belang</strong> bij het beantwoorden van zakelijke aanvragen die aan ons worden gestuurd.';
   nl.pv_h_who = 'Wie ziet het nog meer';
-  nl.pv_who1 = 'Jouw aanvraag wordt opgeslagen in een Google Sheet en per e-mail naar ons gestuurd, via Google Workspace (Google Sheets, Apps Script en Gmail), dat optreedt als onze verwerker onder zijn eigen verwerkersvoorwaarden. Wij delen jouw gegevens met geen enkele andere derde partij, behalve waar dat nodig is om een door jou bevestigde bestelling uit te voeren.';
+  nl.pv_who1 = 'Jouw aanvraag wordt opgeslagen en per e-mail naar ons gestuurd via diensten van Google, dat optreedt als onze verwerker onder zijn eigen verwerkersvoorwaarden. Wij delen jouw gegevens met geen enkele andere derde partij, behalve waar dat nodig is om een door jou bevestigde bestelling uit te voeren.';
   nl.pv_who2 = 'Omdat de infrastructuur van Google wereldwijd opereert, kunnen jouw gegevens buiten de Europese Economische Ruimte worden verwerkt, onder de modelcontractbepalingen en waarborgen van Google.';
   nl.pv_h_keep = 'Hoe lang wij ze bewaren';
   nl.pv_keep = 'Wij bewaren aanvraaggegevens zolang als nodig is om jouw verzoek af te handelen en op te volgen, tenzij je ons vraagt ze eerder te verwijderen.';
