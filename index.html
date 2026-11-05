@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){var l=null;try{l=localStorage.getItem("gb_lang")}catch(e){}if(l!=="en"){var d=document.documentElement;d.classList.add("i18n-pending");setTimeout(function(){d.classList.remove("i18n-pending")},1500);}})();</script>
 <title>GlobalBizz Solutions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Schoolbell&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -46,14 +47,14 @@
   .brand img{width:40px;height:40px;}
   .brand-text{font-family:'Anton',sans-serif;font-size:19px;line-height:1;}
   .brand-text .bizz{color:var(--blue);}
-  nav.links{display:flex;gap:34px;list-style:none;margin:0;padding:0;}
-  nav.links a{text-decoration:none;font-weight:600;font-size:15px;color:var(--ink);position:relative;padding-bottom:4px;}
+  nav.links{display:flex;gap:28px;list-style:none;margin:0;padding:0;}
+  nav.links a{text-decoration:none;font-weight:600;font-size:15px;color:var(--ink);position:relative;padding-bottom:4px;white-space:nowrap;}
   nav.links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--blue);transition:width .25s ease;}
   nav.links a:hover::after{width:100%;}
-  .nav-cta{background:var(--ink);color:#fff;text-decoration:none;padding:10px 20px;border-radius:2px;font-size:14.5px;font-weight:700;}
+  .nav-cta{background:var(--ink);color:#fff;text-decoration:none;padding:10px 20px;border-radius:2px;font-size:14.5px;font-weight:700;white-space:nowrap;}
   .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:4px;padding:8px 10px;}
-  .nav-links-wrap{display:flex;align-items:center;gap:32px;}
-  @media (max-width:860px){
+  .nav-links-wrap{display:flex;align-items:center;gap:24px;}
+  @media (max-width:1100px){
     .nav-links-wrap{position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;align-items:flex-start;padding:20px 32px 28px;border-bottom:1px solid var(--line);display:none;}
     .nav-links-wrap.open{display:flex;}
     nav.links{flex-direction:column;gap:18px;width:100%;}
@@ -222,6 +223,10 @@
   .socials a.instagram{background:radial-gradient(circle at 30% 107%, #fdf497, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);}
   .socials a.linkedin{background:#0A66C2;}
   .footer-meta{font-size:12.5px;color:var(--ink-soft);}
+
+  /* LANGUAGE */
+  .i18n-pending body{visibility:hidden;}
+  .lang-select{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:2px;padding:9px 10px;cursor:pointer;}
 </style>
 </head>
 <body>
@@ -232,17 +237,21 @@
       <img src="GB_Logo_2026.svg" alt="GlobalBizz Solutions logo">
       <span class="brand-text">GlobalBi<span class="bizz">zz</span> Solutions</span>
     </a>
-    <button class="menu-btn" aria-label="Toggle menu" onclick="document.querySelector('.nav-links-wrap').classList.toggle('open')">☰</button>
+    <button class="menu-btn" aria-label="Toggle menu" data-i18n-attr="aria-label:menu_toggle" onclick="document.querySelector('.nav-links-wrap').classList.toggle('open')">☰</button>
     <div class="nav-links-wrap">
       <nav class="links">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
+        <a href="#home" data-i18n="nav_home">Home</a>
+        <a href="#about" data-i18n="nav_about">About</a>
         <a href="#soulscribe">SoulScribe</a>
         <a href="#earthengrace">EarthenGrace</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
+        <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
       </nav>
-      <a href="enquiry.html" class="nav-cta">Submit Enquiry</a>
+      <select class="lang-select" aria-label="Taal / Language">
+        <option value="nl">Nederlands</option>
+        <option value="en">English</option>
+      </select>
+      <a href="enquiry.html" class="nav-cta" data-i18n="nav_cta">Submit Enquiry</a>
     </div>
   </div>
 </header>
@@ -250,31 +259,31 @@
 <section class="hero" id="home">
   <div class="wrap hero-grid">
     <div>
-      <div class="hero-text"><h1>CONNECTING<span class="line2"> CRAFTSMANSHIP </span>WITH COMMERCE, GLOBALLY</h1></div>
-      <div class="hero-text"><p class="tagline">with a <span class="hl">handmade</span> touch</p></div>
-      <p class="lede">Two artisan product lines — SoulScribe and EarthenGrace — built on quality, sustainability and collaboration, and open to the partnerships that help them travel further.</p>
+      <div class="hero-text"><h1 data-i18n-html="hero_h1_html">CONNECTING<span class="line2"> CRAFTSMANSHIP </span>WITH COMMERCE, GLOBALLY</h1></div>
+      <div class="hero-text"><p class="tagline" data-i18n-html="hero_tagline_html">with a <span class="hl">handmade</span> touch</p></div>
+      <p class="lede" data-i18n="hero_lede">Two artisan product lines — SoulScribe and EarthenGrace — built on quality, sustainability and collaboration, and open to the partnerships that help them travel further.</p>
       <div class="hero-ctas">
-        <a href="#collections" class="btn btn-outline">Explore the collections</a>
-        <a href="enquiry.html" class="btn btn-primary">Submit Enquiry</a>
+        <a href="#collections" class="btn btn-outline" data-i18n="hero_cta_explore">Explore the collections</a>
+        <a href="enquiry.html" class="btn btn-primary" data-i18n="hero_cta_enquiry">Submit Enquiry</a>
       </div>
     </div>
     <div class="hero-visual">
       <div class="hero-track-wrap">
         <div class="hero-track" id="heroTrack">
           <!-- REPLACE each src below with your own product photos — keep the filenames or update them to match -->
-          <div class="hero-slide"><img src="product-1.jpg" alt="GlobalBizz product photo 1"></div>
-          <div class="hero-slide"><img src="product-2.jpg" alt="GlobalBizz product photo 2"></div>
-          <div class="hero-slide"><img src="product-3.jpg" alt="GlobalBizz product photo 3"></div>
-          <div class="hero-slide"><img src="product-4.jpg" alt="GlobalBizz product photo 4"></div>
-          <div class="hero-slide"><img src="product-5.jpg" alt="GlobalBizz product photo 5"></div>
+          <div class="hero-slide"><img src="product-1.jpg" alt="GlobalBizz product photo 1" data-i18n-attr="alt:hero_alt_1"></div>
+          <div class="hero-slide"><img src="product-2.jpg" alt="GlobalBizz product photo 2" data-i18n-attr="alt:hero_alt_2"></div>
+          <div class="hero-slide"><img src="product-3.jpg" alt="GlobalBizz product photo 3" data-i18n-attr="alt:hero_alt_3"></div>
+          <div class="hero-slide"><img src="product-4.jpg" alt="GlobalBizz product photo 4" data-i18n-attr="alt:hero_alt_4"></div>
+          <div class="hero-slide"><img src="product-5.jpg" alt="GlobalBizz product photo 5" data-i18n-attr="alt:hero_alt_5"></div>
         </div>
       </div>
       <div class="gallery-nav">
-        <button type="button" aria-label="Previous photo" onclick="heroGalleryMove(-1)">‹</button>
-        <button type="button" aria-label="Next photo" onclick="heroGalleryMove(1)">›</button>
+        <button type="button" aria-label="Previous photo" data-i18n-attr="aria-label:photo_prev" onclick="heroGalleryMove(-1)">‹</button>
+        <button type="button" aria-label="Next photo" data-i18n-attr="aria-label:photo_next" onclick="heroGalleryMove(1)">›</button>
       </div>
       <div class="hero-dots" id="heroDots"></div>
-      <div class="badge-pill"><span class="dot"></span>Netherlands · KvK 94673543</div>
+      <div class="badge-pill"><span class="dot"></span><span data-i18n="hero_badge">Netherlands · KvK 94673543</span></div>
     </div>
   </div>
 </section>
@@ -287,52 +296,52 @@
       <div class="exhibition-track-wrap">
         <div class="exhibition-track" id="exhibitionTrack">
           <!-- add a photo any time: copy a line, rename the file -->
-          <div class="exhibition-slide"><img src="stand-1.jpg" alt="logo"></div>
-          <div class="exhibition-slide"><img src="trendz2026.jpg" alt="hall""></div>
-          <div class="exhibition-slide"><img src="stand-3.jpg" alt="day at the exhibition"></div>
+          <div class="exhibition-slide"><img src="stand-1.jpg" alt="logo" data-i18n-attr="alt:ex_alt_1"></div>
+          <div class="exhibition-slide"><img src="trendz2026.jpg" alt="hall" data-i18n-attr="alt:ex_alt_2"></div>
+          <div class="exhibition-slide"><img src="stand-3.jpg" alt="day at the exhibition" data-i18n-attr="alt:ex_alt_3"></div>
         </div>
       </div>
       <div class="gallery-nav">
-        <button type="button" aria-label="Previous photo" onclick="exhibitionGalleryMove(-1)">‹</button>
-        <button type="button" aria-label="Next photo" onclick="exhibitionGalleryMove(1)">›</button>
+        <button type="button" aria-label="Previous photo" data-i18n-attr="aria-label:photo_prev" onclick="exhibitionGalleryMove(-1)">‹</button>
+        <button type="button" aria-label="Next photo" data-i18n-attr="aria-label:photo_next" onclick="exhibitionGalleryMove(1)">›</button>
       </div>
       <div class="hero-dots" id="exhibitionDots"></div>
     </div>
     <div>
-      <p class="eyebrow">Upcoming & Recent exhibitions</p>
+      <p class="eyebrow" data-i18n="ex_eyebrow">Upcoming & Recent exhibitions</p>
       <h2>Trendz / showUP 2026</h2>
-      <p class="lede">Come see SoulScribe & EarthenGrace in person</p>
+      <p class="lede" data-i18n="ex_lede">Come see SoulScribe & EarthenGrace in person</p>
       <div class="exhibition-meta">
         <div class="meta-item">
           <span class="meta-icon">📅</span>
         <div>
-        <div class="meta-label">Dates</div>
-        <div class="meta-value">30–31 Aug & 1 Sep 2026<br><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Trendz+%2F+showUP+2026+-+GlobalBizz+Solutions&dates=20260830T090000/20260901T180000&location=Evenementenhal+Gorinchem%2C+Netherlands&details=Visit+GlobalBizz+Solutions+at+Stand+L32T" target="_blank" rel="noopener">Add to calendar</a></div>
+        <div class="meta-label" data-i18n="ex_dates_label">Dates</div>
+        <div class="meta-value"><span data-i18n="ex_dates_value">30–31 Aug & 1 Sep 2026</span><br><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Trendz+%2F+showUP+2026+-+GlobalBizz+Solutions&dates=20260830T090000/20260901T180000&location=Evenementenhal+Gorinchem%2C+Netherlands&details=Visit+GlobalBizz+Solutions+at+Stand+L32T" target="_blank" rel="noopener" data-i18n="ex_add_cal">Add to calendar</a></div>
       </div>
     </div>
   <div class="meta-item">
     <span class="meta-icon">📍</span>
     <div>
-      <div class="meta-label">Location</div>
+      <div class="meta-label" data-i18n="ex_loc_label">Location</div>
       <div class="meta-value">Stand L32T (Next Level) — Evenementenhal Gorinchem</div>
     </div>
   </div>
   <div class="meta-item">
     <span class="meta-icon">🔗</span>
     <div>
-      <div class="meta-label">Event</div>
-      <div class="meta-value"><a href="https://www.trendz-showup.nl/" target="_blank" rel="noopener">Trendz / showUP page</a></div>
+      <div class="meta-label" data-i18n="ex_event_label">Event</div>
+      <div class="meta-value"><a href="https://www.trendz-showup.nl/" target="_blank" rel="noopener" data-i18n="ex_event_link">Trendz / showUP page</a></div>
     </div>
   </div>
   <div class="meta-item">
     <span class="meta-icon">🧭</span>
     <div>
-      <div class="meta-label">Getting there</div>
-      <div class="meta-value"><a href="https://maps.google.com/?q=Evenementenhal+Gorinchem" target="_blank" rel="noopener">Directions</a></div>
+      <div class="meta-label" data-i18n="ex_route_label">Getting there</div>
+      <div class="meta-value"><a href="https://maps.google.com/?q=Evenementenhal+Gorinchem" target="_blank" rel="noopener" data-i18n="ex_route_link">Directions</a></div>
     </div>
   </div>
 </div>
-      <a href="mailto:sales@globalbizz.nl?subject=Meet at Trendz/showUP 2026 - Stand L32T" class="btn btn-primary" style="margin-top:22px;display:inline-flex;">Book a meeting with us at the stand</a>
+      <a href="mailto:sales@globalbizz.nl?subject=Meet at Trendz/showUP 2026 - Stand L32T" class="btn btn-primary" style="margin-top:22px;display:inline-flex;" data-i18n="ex_book_btn">Book a meeting with us at the stand</a>
 </div>
   </div>
 </section>
@@ -342,17 +351,17 @@
 <section class="about" id="about">
   <div class="wrap about-grid">
     <div>
-      <p class="eyebrow">Who we are</p>
-      <h2>Craftsmanship meets<br>global commerce.</h2>
+      <p class="eyebrow" data-i18n="about_eyebrow">Who we are</p>
+      <h2 data-i18n-html="about_h2_html">Craftsmanship meets<br>global commerce.</h2>
     </div>
     <div>
-      <p>At GlobalBizz Solutions, we bring artisanal craftsmanship and creative innovations to life through our two product lines — SoulScribe and EarthenGrace.</p>
-      <p>Rooted in our core values of quality, sustainability and collaboration, we're building a platform that celebrates diversity and endless possibilities.</p>
-      <p>We're always open to partnerships and new opportunities. Together, let's craft meaningful connections and deliver exceptional offerings to the world.</p>
+      <p data-i18n="about_p1">At GlobalBizz Solutions, we bring artisanal craftsmanship and creative innovations to life through our two product lines — SoulScribe and EarthenGrace.</p>
+      <p data-i18n="about_p2">Rooted in our core values of quality, sustainability and collaboration, we're building a platform that celebrates diversity and endless possibilities.</p>
+      <p data-i18n="about_p3">We're always open to partnerships and new opportunities. Together, let's craft meaningful connections and deliver exceptional offerings to the world.</p>
       <div class="about-marks">
-        <div class="about-mark"><span class="sq"></span>Quality</div>
-        <div class="about-mark"><span class="sq"></span>Sustainability</div>
-        <div class="about-mark"><span class="sq"></span>Collaboration</div>
+        <div class="about-mark"><span class="sq"></span><span data-i18n="quality">Quality</span></div>
+        <div class="about-mark"><span class="sq"></span><span data-i18n="sustainability">Sustainability</span></div>
+        <div class="about-mark"><span class="sq"></span><span data-i18n="collaboration">Collaboration</span></div>
       </div>
     </div>
   </div>
@@ -361,23 +370,23 @@
 <section class="spread" id="collections">
   <div class="wrap">
     <div class="spread-head">
-      <p class="eyebrow" style="text-align:center;">Our lines</p>
-      <h2>Two collections, one philosophy</h2>
+      <p class="eyebrow" style="text-align:center;" data-i18n="lines_eyebrow">Our lines</p>
+      <h2 data-i18n="lines_h2">Two collections, one philosophy</h2>
     </div>
     <div class="pages">
       <div class="page light" id="soulscribe">
-        <span class="tag">Leather · Journals</span>
+        <span class="tag" data-i18n="sc_tag">Leather · Journals</span>
         <h1>SoulScribe</h1>
-        <p class="quote">"Beautifully hand-crafted leather journals for every thought."</p>
-        <p class="desc">Full-grain leather journals and diaries, made to be carried, written in and kept for years. Our leather line for every thought worth putting down.</p>
-        <a href="#gallery" class="explore">View the collection <span class="arrow">→</span></a>
+        <p class="quote" data-i18n="sc_quote">"Beautifully hand-crafted leather journals for every thought."</p>
+        <p class="desc" data-i18n="sc_desc">Full-grain leather journals and diaries, made to be carried, written in and kept for years. Our leather line for every thought worth putting down.</p>
+        <a href="#gallery" class="explore"><span data-i18n="view_collection">View the collection</span> <span class="arrow">→</span></a>
       </div>
       <div class="page dark" id="earthengrace">
-        <span class="tag">Earthenware · Artefacts</span>
+        <span class="tag" data-i18n="eg_tag">Earthenware · Artefacts</span>
         <h1>EarthenGrace</h1>
-        <p class="quote">"Timeless artefacts crafted with heart and skill."</p>
-        <p class="desc">Our earthen line of artefacts — shaped, fired and finished by hand, built for everyday use and made to last well beyond it.</p>
-        <a href="#gallery" class="explore">View the collection <span class="arrow">→</span></a>
+        <p class="quote" data-i18n="eg_quote">"Timeless artefacts crafted with heart and skill."</p>
+        <p class="desc" data-i18n="eg_desc">Our earthen line of artefacts — shaped, fired and finished by hand, built for everyday use and made to last well beyond it.</p>
+        <a href="#gallery" class="explore"><span data-i18n="view_collection">View the collection</span> <span class="arrow">→</span></a>
       </div>
     </div>
   </div>
@@ -388,13 +397,13 @@
 <section class="gallery" id="gallery">
   <div class="wrap">
     <div class="gallery-head">
-      <p class="eyebrow">Fresh from the workshop</p>
-      <h2>Gallery</h2>
-      <p>See what's new - our new discussions, new products, work in progress, and behind-the-scenes shots — updated regularly.</p>
+      <p class="eyebrow" data-i18n="gal_eyebrow">Fresh from the workshop</p>
+      <h2 data-i18n="gal_h2">Gallery</h2>
+      <p data-i18n="gal_p">See what's new - our new discussions, new products, work in progress, and behind-the-scenes shots — updated regularly.</p>
     </div>
     <div class="gallery-embed">
       <!-- REPLACE src below with your Google Drive shared link -->
-      <iframe src="https://drive.google.com/embeddedfolderview?id=1OneZeAGPnN-aafSBsHFWnyLlIV5kRLEk#grid" title="GlobalBizz Solutions photo gallery" loading="lazy"></iframe>
+      <iframe src="https://drive.google.com/embeddedfolderview?id=1OneZeAGPnN-aafSBsHFWnyLlIV5kRLEk#grid" title="GlobalBizz Solutions photo gallery" data-i18n-attr="title:gal_iframe_title" loading="lazy"></iframe>
     </div>
   </div>
 </section>
@@ -402,21 +411,21 @@
 <section class="values">
   <div class="wrap">
     <div class="values-head">
-      <p class="eyebrow">What we stand for</p>
-      <h2>Diversity, and endless possibilities</h2>
+      <p class="eyebrow" data-i18n="vals_eyebrow">What we stand for</p>
+      <h2 data-i18n="vals_h2">Diversity, and endless possibilities</h2>
     </div>
     <div class="values-grid">
       <div class="value">
-        <h3>Quality</h3>
-        <p>Materials and technique come first, every piece checked by hand before it ships.</p>
+        <h3 data-i18n="quality">Quality</h3>
+        <p data-i18n="val_q_p">Materials and technique come first, every piece checked by hand before it ships.</p>
       </div>
       <div class="value">
-        <h3>Sustainability</h3>
-        <p>Small-batch production and responsibly sourced materials, made to be kept, not replaced.</p>
+        <h3 data-i18n="sustainability">Sustainability</h3>
+        <p data-i18n="val_s_p">Small-batch production and responsibly sourced materials, made to be kept, not replaced.</p>
       </div>
       <div class="value">
-        <h3>Collaboration</h3>
-        <p>Always open to partnerships and new opportunities — we build with people, not around them.</p>
+        <h3 data-i18n="collaboration">Collaboration</h3>
+        <p data-i18n="val_c_p">Always open to partnerships and new opportunities — we build with people, not around them.</p>
       </div>
     </div>
   </div>
@@ -427,13 +436,13 @@
 <section class="contact" id="contact">
   <div class="wrap">
     <div class="contact-box">
-      <p class="eyebrow">Get in touch</p>
-      <h2>Let's craft meaningful connections.</h2>
-      <p>We're always open to new partnerships and opportunities — reach out and let's talk about what we can build together.</p>
+      <p class="eyebrow" data-i18n="contact_eyebrow">Get in touch</p>
+      <h2 data-i18n="contact_h2">Let's craft meaningful connections.</h2>
+      <p data-i18n="contact_p">We're always open to new partnerships and opportunities — reach out and let's talk about what we can build together.</p>
       <div class="contact-actions">
-        <a href="mailto:sales@globalbizz.nl" class="btn btn-white">Email us</a>
-        <a href="https://www.linkedin.com/company/globalbizznl" target="_blank" rel="noopener" class="btn btn-white">Follow us on LinkedIn</a>
-        <a href="https://forms.gle/rTHKQgbVV8rNWs6x6" target="_blank" rel="noopener" class="btn btn-white">Order products</a>
+        <a href="mailto:sales@globalbizz.nl" class="btn btn-white" data-i18n="btn_email">Email us</a>
+        <a href="https://www.linkedin.com/company/globalbizznl" target="_blank" rel="noopener" class="btn btn-white" data-i18n="btn_linkedin">Follow us on LinkedIn</a>
+        <a href="https://forms.gle/rTHKQgbVV8rNWs6x6" target="_blank" rel="noopener" class="btn btn-white" data-i18n="btn_order">Order products</a>
       </div>
     </div>
   </div>
@@ -453,11 +462,12 @@
           <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.15 1.45-2.15 2.94v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
         </a>
       </div>
-      <div class="footer-meta"><a href="privacy.html" style="color:inherit;">Privacy Policy</a> · GlobalBizz Solutions · Netherlands · KvK 94673543</div>
+      <div class="footer-meta" data-i18n-html="footer_meta_html"><a href="privacy.html" style="color:inherit;">Privacy Policy</a> · GlobalBizz Solutions · Netherlands · KvK 94673543</div>
     </div>
   </div>
 </footer>
   
+<script src="i18n.js?v=1"></script>
 <script>
 function makeSwipableGallery(trackId, dotsId, moveVarName){
   const track = document.getElementById(trackId);
@@ -468,7 +478,7 @@ function makeSwipableGallery(trackId, dotsId, moveVarName){
 
   for(let i=0;i<total;i++){
     const d = document.createElement('button');
-    d.setAttribute('aria-label','Go to photo '+(i+1));
+    d.setAttribute('aria-label', GBi18n.t('go_to_photo', {n: i+1}, 'Go to photo '+(i+1)));
     d.onclick = () => { index = i; render(); };
     dotsWrap.appendChild(d);
   }
@@ -514,6 +524,14 @@ function makeSwipableGallery(trackId, dotsId, moveVarName){
 
 makeSwipableGallery('heroTrack', 'heroDots', 'heroGalleryMove');
 makeSwipableGallery('exhibitionTrack', 'exhibitionDots', 'exhibitionGalleryMove');
+
+GBi18n.onChange(function(){
+  document.querySelectorAll('.hero-dots').forEach(function(w){
+    Array.prototype.forEach.call(w.children, function(d, i){
+      d.setAttribute('aria-label', GBi18n.t('go_to_photo', {n: i+1}, 'Go to photo '+(i+1)));
+    });
+  });
+});
 </script>
 
 <script>
