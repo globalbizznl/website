@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Submit Enquiry — GlobalBizz Solutions</title>
+<script>(function(){var l=null;try{l=localStorage.getItem("gb_lang")}catch(e){}if(l!=="en"){var d=document.documentElement;d.classList.add("i18n-pending");setTimeout(function(){d.classList.remove("i18n-pending")},1500);}})();</script>
+<title data-i18n="enq_title">Submit Enquiry — GlobalBizz Solutions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Schoolbell&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -135,6 +136,14 @@
   .socials a.instagram{background:radial-gradient(circle at 30% 107%, #fdf497, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);}
   .socials a.linkedin{background:#0A66C2;}
   .footer-meta{font-size:12.5px;color:var(--ink-soft);}
+
+  /* LANGUAGE + current-page header button */
+  .i18n-pending body{visibility:hidden;}
+  .nav-right{display:flex;align-items:center;gap:12px;}
+  .lang-select{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:2px;padding:9px 10px;cursor:pointer;}
+  /* "you are here" — not a link, so it cannot reload the page and wipe the form */
+  .nav-cta.is-current{background:var(--paper-tint);color:var(--ink-soft);border:1px solid var(--line);cursor:default;user-select:none;}
+  @media (max-width:480px){.lang-select{padding:8px 8px;font-size:13px;}.nav-right{gap:8px;}}
 </style>
 </head>
 <body>
@@ -145,35 +154,41 @@
       <img src="GB_Logo_2026.svg" alt="GlobalBizz Solutions logo">
       <span class="brand-text">GlobalBi<span class="bizz">zz</span> Solutions</span>
     </a>
-    <a href="enquiry.html" class="nav-cta">Submit Enquiry</a>
+    <div class="nav-right">
+      <select class="lang-select" aria-label="Taal / Language">
+        <option value="nl">Nederlands</option>
+        <option value="en">English</option>
+      </select>
+      <span class="nav-cta is-current" aria-current="page" data-i18n="nav_cta">Submit Enquiry</span>
+    </div>
   </div>
 </header>
 
 <div class="wrap page">
-  <a href="index.html" class="back">← Back to GlobalBizz Solutions</a>
-  <h1>Submit Enquiry</h1>
-  <p class="intro">Browse our journal covers, pick the ones you're interested in, and let us know quantities.</p>
+  <a href="index.html" class="back" data-i18n="back_home">← Back to GlobalBizz Solutions</a>
+  <h1 data-i18n="nav_cta">Submit Enquiry</h1>
+  <p class="intro" data-i18n="enq_intro">Browse our journal covers, pick the ones you're interested in, and let us know quantities.</p>
 
   <div class="steps">
-    <div class="step-col"><div class="step-dot done" id="dot1"></div><div class="step-label active" id="label1">Choose products</div></div>
-    <div class="step-col"><div class="step-dot" id="dot2"></div><div class="step-label" id="label2">Enter quantities</div></div>
-    <div class="step-col"><div class="step-dot" id="dot3"></div><div class="step-label" id="label3">Your details</div></div>
-    <div class="step-col"><div class="step-dot" id="dot4"></div><div class="step-label" id="label4">Review &amp; send</div></div>
+    <div class="step-col"><div class="step-dot done" id="dot1"></div><div class="step-label active" id="label1" data-i18n="step1">Choose products</div></div>
+    <div class="step-col"><div class="step-dot" id="dot2"></div><div class="step-label" id="label2" data-i18n="step2">Enter quantities</div></div>
+    <div class="step-col"><div class="step-dot" id="dot3"></div><div class="step-label" id="label3" data-i18n="step3">Your details</div></div>
+    <div class="step-col"><div class="step-dot" id="dot4"></div><div class="step-label" id="label4" data-i18n="step4">Review &amp; send</div></div>
   </div>
 
   <!-- STEP 1: BROWSE -->
   <div class="step active" id="step1">
     <div class="toolbar">
-      <input type="text" id="searchBox" placeholder="Search by name...">
+      <input type="text" id="searchBox" placeholder="Search by name..." data-i18n-attr="placeholder:search_ph">
       <span class="selected-count" id="selCount">0 selected</span>
     </div>
     <div class="showing-count" id="showingCount"></div>
-    <div id="statusArea"><div class="status loading">⏳ Loading products…</div></div>
+    <div id="statusArea"><div class="status loading" data-i18n="loading">⏳ Loading products…</div></div>
     <div class="grid" id="productGrid"></div>
-    <button class="btn btn-outline load-more" id="loadMoreBtn" style="display:none;">Load more</button>
+    <button class="btn btn-outline load-more" id="loadMoreBtn" style="display:none;" data-i18n="load_more">Load more</button>
     <div class="actions">
       <span></span>
-      <button class="btn btn-primary" id="toStep2" disabled onclick="goToStep(2)">Next: Quantities →</button>
+      <button class="btn btn-primary" id="toStep2" disabled onclick="goToStep(2)" data-i18n="next_qty">Next: Quantities →</button>
     </div>
   </div>
 
@@ -181,47 +196,47 @@
   <div class="step" id="step2">
     <div id="qtyList"></div>
     <div class="actions">
-      <button class="btn btn-outline" onclick="goToStep(1)">← Back</button>
-      <button class="btn btn-primary" onclick="goToStep(3)">Next: Your details →</button>
+      <button class="btn btn-outline" onclick="goToStep(1)" data-i18n="btn_back">← Back</button>
+      <button class="btn btn-primary" onclick="goToStep(3)" data-i18n="next_details">Next: Your details →</button>
     </div>
   </div>
 
   <!-- STEP 3: DETAILS -->
   <div class="step" id="step3">
-    <label>Name *</label>
+    <label data-i18n="lbl_name">Name *</label>
     <input type="text" id="fName" required>
-    <label>Email *</label>
+    <label data-i18n="lbl_email">Email *</label>
     <input type="email" id="fEmail" required>
-    <label>Phone</label>
+    <label data-i18n="lbl_phone">Phone</label>
     <input type="tel" id="fPhone">
-    <label>Comments</label>
-    <textarea id="fComments" placeholder="Anything else we should know?"></textarea>
+    <label data-i18n="lbl_comments">Comments</label>
+    <textarea id="fComments" placeholder="Anything else we should know?" data-i18n-attr="placeholder:comments_ph"></textarea>
     <div class="status error" id="step3Error" style="display:none;"></div>
     <div class="actions">
-      <button class="btn btn-outline" onclick="goToStep(2)">← Back</button>
-      <button class="btn btn-primary" onclick="validateAndReview()">Next: Review →</button>
+      <button class="btn btn-outline" onclick="goToStep(2)" data-i18n="btn_back">← Back</button>
+      <button class="btn btn-primary" onclick="validateAndReview()" data-i18n="next_review">Next: Review →</button>
     </div>
   </div>
 
   <!-- STEP 4: REVIEW & SEND (read-only, edit via links back) -->
   <div class="step" id="step4">
-    <h2 class="review-heading">Your details</h2>
+    <h2 class="review-heading" data-i18n="rv_details">Your details</h2>
     <p class="review-contact" id="reviewContact"></p>
-    <a href="#" onclick="goToStep(3);return false;" class="edit-link">Edit details</a>
+    <a href="#" onclick="goToStep(3);return false;" class="edit-link" data-i18n="edit_details">Edit details</a>
 
-    <h2 class="review-heading" style="margin-top:28px;">Items</h2>
+    <h2 class="review-heading" style="margin-top:28px;" data-i18n="rv_items">Items</h2>
     <div id="reviewList"></div>
     <div style="margin-top:8px;">
-      <a href="#" onclick="goToStep(1);return false;" class="edit-link">Edit products</a>
+      <a href="#" onclick="goToStep(1);return false;" class="edit-link" data-i18n="edit_products">Edit products</a>
       <span style="color:var(--ink-soft);margin:0 8px;">·</span>
-      <a href="#" onclick="goToStep(2);return false;" class="edit-link">Edit quantities</a>
+      <a href="#" onclick="goToStep(2);return false;" class="edit-link" data-i18n="edit_quantities">Edit quantities</a>
     </div>
 
-        <p style="color:var(--ink-soft);font-size:14px;margin-top:24px;">Please note: submitting this enquiry does not confirm an order. We'll review the details and follow up with an order summary and any questions within 3 working days.</p>
+        <p style="color:var(--ink-soft);font-size:14px;margin-top:24px;" data-i18n="disclaimer">Please note: submitting this enquiry does not confirm an order. We'll review the details and follow up with an order summary and any questions within 3 working days.</p>
 
     <div class="actions">
-      <button class="btn btn-outline" onclick="goToStep(3)">← Back</button>
-      <button class="btn btn-primary" id="sendBtn" onclick="submitEnquiry()">Send Enquiry</button>
+      <button class="btn btn-outline" onclick="goToStep(3)" data-i18n="btn_back">← Back</button>
+      <button class="btn btn-primary" id="sendBtn" onclick="submitEnquiry()" data-i18n="send">Send Enquiry</button>
     </div>
     <div id="submitStatus"></div>
   </div>
@@ -229,9 +244,9 @@
   <!-- CONFIRMATION -->
   <div class="step" id="stepDone">
     <div class="confirm">
-      <h1>Thank you!</h1>
-        <p style="color:var(--ink-soft);">Your enquiry has been sent — we'll get back to you shortly.</p>
-        <p style="color:var(--ink-soft);font-size:14px;max-width:480px;margin:14px auto 0;">Please note: this enquiry is not a confirmed order. We'll review the details and follow up with an order summary and any questions within 3 working days.</p><a href="index.html" class="btn btn-primary" style="margin-top:20px;">Back to site</a>
+      <h1 data-i18n="thanks">Thank you!</h1>
+        <p style="color:var(--ink-soft);" data-i18n="sent_msg">Your enquiry has been sent — we'll get back to you shortly.</p>
+        <p style="color:var(--ink-soft);font-size:14px;max-width:480px;margin:14px auto 0;" data-i18n="disclaimer_done">Please note: this enquiry is not a confirmed order. We'll review the details and follow up with an order summary and any questions within 3 working days.</p><a href="index.html" class="btn btn-primary" style="margin-top:20px;" data-i18n="back_to_site">Back to site</a>
     </div>
   </div>
 </div>
@@ -248,17 +263,18 @@
           <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.15 1.45-2.15 2.94v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
         </a>
       </div>
-      <div class="footer-meta">GlobalBizz Solutions · Netherlands · KvK 94673543 · <a href="privacy.html" style="color:inherit;">Privacy Policy</a></div>
+      <div class="footer-meta" data-i18n-html="footer_meta_enq_html">GlobalBizz Solutions · Netherlands · KvK 94673543 · <a href="privacy.html" style="color:inherit;">Privacy Policy</a></div>
     </div>
   </div>
 </footer>
 
 <div class="lightbox" id="lightbox">
-  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close" data-i18n-attr="aria-label:close">✕</button>
   <img id="lightboxImg" src="" alt="">
   <div class="lightbox-caption" id="lightboxCaption"></div>
 </div>
 
+<script src="i18n.js?v=2"></script>
 <script>
 // REPLACE these two with your deployed Apps Script Web app URLs
 const LIST_PRODUCTS_URL = 'https://script.google.com/macros/s/AKfycbxJI9-45DtwteMt8u1tlGsLCxF_xTW2h4DQJTm1nxzn4peWkdP9ZM20gef2vWgzKMdp3Q/exec';
@@ -277,6 +293,14 @@ const DEFAULT_PAPER_COLOR = 'Yellow';
 const EDGE_OPTIONS = ['Deckled', 'Sharp'];
 const DEFAULT_EDGE = 'Deckled';
 
+// language helpers (strings live in i18n.js; stored/submitted values stay English)
+const t = (k, v, f) => GBi18n.t(k, v, f);
+const optLabel = v => t('opt_' + v, null, v);
+let currentStep = 1;
+let loadFailed = false;
+let step3ErrKey = null;
+let submitState = null; // null | 'sending' | 'error'
+
 const grid = document.getElementById('productGrid');
 const statusArea = document.getElementById('statusArea');
 const loadMoreBtn = document.getElementById('loadMoreBtn');
@@ -288,12 +312,18 @@ fetch(LIST_PRODUCTS_URL)
   .then(data => {
     allProducts = data;
     filteredProducts = data;
+    loadFailed = false;
     statusArea.innerHTML = '';
     renderGrid();
   })
   .catch(() => {
-    statusArea.innerHTML = '<div class="status error">Could not load products. Please refresh, or contact sales@globalbizz.nl.</div>';
+    loadFailed = true;
+    renderLoadStatus();
   });
+
+function renderLoadStatus(){
+  statusArea.innerHTML = loadFailed ? '<div class="status error">' + t('load_error') + '</div>' : '';
+}
 
 document.getElementById('searchBox').addEventListener('input', e => {
   const q = e.target.value.toLowerCase();
@@ -311,7 +341,7 @@ function renderGrid(){
     card.innerHTML = `
       <img src="${p.thumbnailUrl}" alt="${p.name}" loading="lazy">
       <div class="check">✓</div>
-      <button type="button" class="zoom-btn" aria-label="View larger image of ${p.name}">
+      <button type="button" class="zoom-btn" aria-label="${t('zoom_aria', {name: p.name})}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
       </button>
       <div class="name">${p.name}</div>`;
@@ -331,9 +361,9 @@ function updateShowingCount(){
   if(total === 0){
     showingEl.textContent = '';
   } else if(shown < total){
-    showingEl.textContent = `Showing ${shown} of ${total} products — scroll down and tap "Load more" to see the rest.`;
+    showingEl.textContent = t('showing_part', {shown: shown, total: total});
   } else {
-    showingEl.textContent = `Showing all ${total} products.`;
+    showingEl.textContent = t('showing_all', {total: total});
   }
 }
 
@@ -368,11 +398,12 @@ function toggleSelect(id, card){
 }
 
 function updateSelectedCount(){
-  selCount.textContent = selectedIds.size + ' selected';
+  selCount.textContent = t('selected_count', {n: selectedIds.size});
   toStep2Btn.disabled = selectedIds.size === 0;
 }
 
 function goToStep(n){
+  currentStep = n;
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
   document.getElementById('step' + n).classList.add('active');
   [1,2,3,4].forEach(i => {
@@ -407,24 +438,24 @@ function renderQtyList(){
     card.className = 'qty-card';
 
     const variantsHtml = variants.map((v, idx) => {
-      const sizeOptsHtml = SIZE_OPTIONS.map(s => `<option value="${s}" ${s===v.size?'selected':''}>${s}</option>`).join('');
-      const colorOptsHtml = PAPER_COLOR_OPTIONS.map(s => `<option value="${s}" ${s===v.paperColor?'selected':''}>${s}</option>`).join('');
-      const edgeOptsHtml = EDGE_OPTIONS.map(s => `<option value="${s}" ${s===v.edge?'selected':''}>${s}</option>`).join('');
+      const sizeOptsHtml = SIZE_OPTIONS.map(s => `<option value="${s}" ${s===v.size?'selected':''}>${optLabel(s)}</option>`).join('');
+      const colorOptsHtml = PAPER_COLOR_OPTIONS.map(s => `<option value="${s}" ${s===v.paperColor?'selected':''}>${optLabel(s)}</option>`).join('');
+      const edgeOptsHtml = EDGE_OPTIONS.map(s => `<option value="${s}" ${s===v.edge?'selected':''}>${optLabel(s)}</option>`).join('');
       const removeBtnHtml = variants.length > 1
-        ? `<div class="remove-cell"><button type="button" class="remove-variant-btn" data-idx="${idx}" data-action="remove" aria-label="Remove this variation">✕</button></div>`
+        ? `<div class="remove-cell"><button type="button" class="remove-variant-btn" data-idx="${idx}" data-action="remove" aria-label="${t('remove_aria')}">✕</button></div>`
         : `<div></div>`;
       return `
         <div class="variant-block" data-idx="${idx}">
           <div class="qty-fields">
-            <div><label>Qty</label><input type="number" min="1" value="${v.qty}" data-idx="${idx}" data-role="qty"></div>
-            <div><label>Size</label><select data-idx="${idx}" data-role="size">${sizeOptsHtml}</select></div>
-            <div><label>Paper color</label><select data-idx="${idx}" data-role="paperColor">${colorOptsHtml}</select></div>
-            <div><label>Edges</label><select data-idx="${idx}" data-role="edge">${edgeOptsHtml}</select></div>
+            <div><label>${t('lbl_qty')}</label><input type="number" min="1" value="${v.qty}" data-idx="${idx}" data-role="qty"></div>
+            <div><label>${t('lbl_size')}</label><select data-idx="${idx}" data-role="size">${sizeOptsHtml}</select></div>
+            <div><label>${t('lbl_paper')}</label><select data-idx="${idx}" data-role="paperColor">${colorOptsHtml}</select></div>
+            <div><label>${t('lbl_edges')}</label><select data-idx="${idx}" data-role="edge">${edgeOptsHtml}</select></div>
             ${removeBtnHtml}
           </div>
           <label class="customize-check">
             <input type="checkbox" data-idx="${idx}" data-role="customize" ${v.customize ? 'checked' : ''}>
-            Needs customization (we'll contact you separately)
+            ${t('customize_label')}
           </label>
         </div>`;
     }).join('');
@@ -434,7 +465,7 @@ function renderQtyList(){
       <div class="qty-body">
         <div class="name">${p.name}</div>
         ${variantsHtml}
-        <button type="button" class="add-variant-btn" data-action="add">+ Add another variation of this product</button>
+        <button type="button" class="add-variant-btn" data-action="add">${t('add_variant')}</button>
       </div>`;
 
     card.querySelectorAll('[data-role="qty"]').forEach(el => {
@@ -471,10 +502,12 @@ function validateAndReview(){
   const nameOk = name.length >= 3;
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   if(!nameOk || !emailOk){
-    errEl.textContent = !nameOk ? 'Please enter your full name (at least 3 letters).' : 'Please enter a valid email address.';
+    step3ErrKey = !nameOk ? 'val_name' : 'val_email';
+    errEl.textContent = t(step3ErrKey);
     errEl.style.display = 'block';
     return;
   }
+  step3ErrKey = null;
   errEl.style.display = 'none';
   goToStep(4);
 }
@@ -492,8 +525,8 @@ function renderReview(){
     const variantsHtml = variants.map(v => `
       <div class="review-variant">
         <div class="meta">
-          ${v.size} · ${v.paperColor} paper, ${v.edge} edges
-          ${v.customize ? '<br><span class="customize-flag">Customization requested</span>' : ''}
+          ${t('review_meta', {size: optLabel(v.size), color: optLabel(v.paperColor), edge: optLabel(v.edge)})}
+          ${v.customize ? `<br><span class="customize-flag">${t('customize_flag')}</span>` : ''}
         </div>
         <div class="qty">×${v.qty}</div>
       </div>`).join('');
@@ -513,7 +546,6 @@ function submitEnquiry(){
   const email = document.getElementById('fEmail').value.trim();
   const phone = document.getElementById('fPhone').value.trim();
   const comments = document.getElementById('fComments').value.trim();
-  const statusEl = document.getElementById('submitStatus');
 
   const items = [];
   allProducts.filter(p => selectedIds.has(p.id)).forEach(p => {
@@ -524,23 +556,47 @@ function submitEnquiry(){
   });
 
   document.getElementById('sendBtn').disabled = true;
-  statusEl.innerHTML = '<div class="status loading">Sending...</div>';
+  submitState = 'sending';
+  renderSubmitStatus();
 
   fetch(SUBMIT_ENQUIRY_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify({ name, email, phone, comments, items })
+    body: JSON.stringify({ name, email, phone, comments, items, lang: GBi18n.getLang() })
   })
   .then(() => {
+    currentStep = 'done';
+    submitState = null;
+    renderSubmitStatus();
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
     document.getElementById('stepDone').classList.add('active');
     window.scrollTo({top:0, behavior:'smooth'});
   })
   .catch(() => {
-    statusEl.innerHTML = '<div class="status error">Something went wrong — please try again or email sales@globalbizz.nl directly.</div>';
+    submitState = 'error';
+    renderSubmitStatus();
     document.getElementById('sendBtn').disabled = false;
   });
 }
+
+function renderSubmitStatus(){
+  const el = document.getElementById('submitStatus');
+  if(submitState === 'sending') el.innerHTML = '<div class="status loading">' + t('sending') + '</div>';
+  else if(submitState === 'error') el.innerHTML = '<div class="status error">' + t('send_error') + '</div>';
+  else el.innerHTML = '';
+}
+
+// Switching language only re-labels things — selections, quantities and typed details are kept.
+GBi18n.onChange(() => {
+  updateSelectedCount();
+  if(allProducts.length) renderGrid();
+  if(loadFailed) renderLoadStatus();
+  if(currentStep === 2) renderQtyList();
+  if(currentStep === 4) renderReview();
+  if(step3ErrKey) document.getElementById('step3Error').textContent = t(step3ErrKey);
+  renderSubmitStatus();
+});
+updateSelectedCount();
 </script>
 </body>
 </html>
